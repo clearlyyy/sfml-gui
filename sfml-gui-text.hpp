@@ -8,7 +8,7 @@ public:
 	text(sf::RectangleShape GUI_BACKGROUND, int slot, std::string TEXT, sf::Color TEXT_COLOR, sf::RenderWindow& window)
 	{
 		sf::Vector2f TEXT_POSITION;
-		font.loadFromFile("cour.ttf");
+		font.loadFromFile("fonts/cour.ttf");
 		Text.setCharacterSize(13);
 		Text.setFillColor(TEXT_COLOR);
 		Text.setFont(font);
