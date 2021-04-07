@@ -25,10 +25,10 @@ int main()
         GUI.UPDATE_GUI(window);
 
         GUI.DRAW_GUI(window);
-        GUI.Text("test text", sf::Color(255, 255, 255), window, 1);
-        GUI.Text("test insane text", sf::Color(255, 255, 255), window, 2);
-        GUI.Text("lick my ass", sf::Color(255, 255, 255), window, 3);
-        GUI.Text("tomato tuesday", sf::Color(255, 255, 255), window, 4);
+        GUI.Text("test #1", sf::Color(255, 255, 255), window, 1);
+        GUI.Text("text #2", sf::Color(255, 255, 255), window, 2);
+        GUI.Text("text #3", sf::Color(255, 255, 255), window, 3);
+        GUI.Text("text #4", sf::Color(255, 255, 255), window, 4);
   
       
 
