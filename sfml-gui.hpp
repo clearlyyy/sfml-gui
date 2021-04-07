@@ -18,7 +18,7 @@ public:
 
 		//TEXT
 		//WINDOW_TEXT.setColor(sf::Color(0, 0, 0));
-		font.loadFromFile("cour.ttf");
+		font.loadFromFile("fonts/cour.ttf");
 		WINDOW_TEXT.setFont(font);
 		WINDOW_TEXT.setFillColor(TEXT_COLOR);
 		WINDOW_TEXT.setCharacterSize(13);
