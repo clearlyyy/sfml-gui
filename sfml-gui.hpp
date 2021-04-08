@@ -1,6 +1,7 @@
 #include <Graphics.hpp>
 #include "sfml-gui-text.hpp"
 #include "sfml-gui-checkbox.hpp"
+#include "sfml-gui-slider.hpp"
 
 class gui
 {
@@ -72,7 +73,7 @@ public:
 	//	text guiTEXT(GUI_BACKGROUND, slot, TEXT, TEXT_COLOR, window);
 	//}
 
-
+	
 private:
 	
 	sf::RectangleShape GUI_BACKGROUND;
@@ -82,7 +83,6 @@ private:
 	int ELEMENT_COUNT = 0;
 	bool flag = true;
 	//bool slots[5] = {false, false, false, false, false};
-
 
 	struct GUI_IDS {
 		sf::RectangleShape GUI_PID;
