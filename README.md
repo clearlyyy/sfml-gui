@@ -1,2 +1,4 @@
 # sfml-gui
-<h2 alight="center"> A Work-in-Progress Graphical User Interface Library for SFML written in C++ </h2>
+
+<h1 align="center>SFML-GUI</h1>
+<h2 align="center"> A Work-in-Progress Graphical User Interface Library for SFML written in C++ </h2>
