@@ -4,5 +4,5 @@
 
 ![DEMO IMAGE](/demoimages/sfml-demoimage.png/)
 
-This Project is heavily inspired by Dear imgui, if you like this project i highly recommend checking it out.
-GitHub](https://github.com/ocornut/imgui)
+This Project is heavily inspired by Dear imgui, if you like this project i highly recommend checking out imgui.
+https://github.com/ocornut/imgui
