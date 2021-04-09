@@ -50,5 +50,6 @@ int main()
     return 0;
 }
 ```
+**Output**
 ![DEMO IMAGE2](/demoimages/gui-starterimage.PNG/)
 
