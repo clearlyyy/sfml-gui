@@ -15,9 +15,6 @@ public:
 		checkBoxText.setFont(checkBoxFont);
 		checkBoxText.setString(CHECKBOX_TEXT);
 
-
-
-
 		checkBox_Background.setSize(sf::Vector2f(15.0f, 15.0f));
 		checkBox_Background.setFillColor(sf::Color(GUI_COLOR.getFillColor().r - 40.0f, GUI_COLOR.getFillColor().g - 40.0f, GUI_COLOR.getFillColor().b - 40.0f));
 		themeColor = sf::Color(GUI_COLOR.getFillColor().r - 40, GUI_COLOR.getFillColor().g - 40, GUI_COLOR.getFillColor().b - 40);
