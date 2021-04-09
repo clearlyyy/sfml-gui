@@ -14,8 +14,8 @@ All that needs to be added is more widgets.
 
 Currently sfml-gui Supports the following widgets.
 
-1. Buttons
-2. Check Boxes
-3. List Boxes
-4. Sliders
-5. Labels
+> 1. Buttons
+> 2. Check Boxes
+> 3. List Boxes
+> 4. Sliders
+> 5. Labels
