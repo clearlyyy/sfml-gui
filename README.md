@@ -18,4 +18,6 @@ Currently sfml-gui Supports the following widgets.
 Labels | Check Boxes | List Boxes | Many Different Sliders | Buttons | 
 -------|-------------|------------|------------------------|---------|
 
+<h1> Creating a GUI has never been easier! </h1>
+
 
