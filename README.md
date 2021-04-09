@@ -6,3 +6,8 @@
 
 This Project is heavily inspired by Dear imgui, if you like this project i highly recommend checking out imgui.
 https://github.com/ocornut/imgui
+
+<h1></h1>
+
+This project is currently a W.I.P, but it is fully functional, and will work in your own projects,
+All that needs to be added is more widgets.
