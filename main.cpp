@@ -14,7 +14,7 @@ All that said, if you want to test the library feel free to use my main.cpp, alt
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
-    gui GUI("test window 1", sf::Vector2f(600, 400), sf::Vector2f(720, 350), sf::Color(41, 39, 39, 128), sf::Color(200, 152, 237), sf::Color(46, 45, 46));
+    gui GUI("test window 1", sf::Vector2f(600, 400), sf::Vector2f(720, 350), sf::Color(41, 39, 39, 128), sf::Color(124, 222, 162), sf::Color(46, 45, 46));
     text Text1(GUI.getGUI(), "test text 1", sf::Color(255, 255, 255), window);
     text Text2(GUI.getGUI(), "Text Number 2!", sf::Color(255, 255, 255), window);
     CheckBox checkBox1(GUI.getGUIColor(), "Checkbox Test 1", sf::Color(255, 255, 255));
@@ -27,8 +27,15 @@ int main()
 
     SliderFloat3 sliderFloat3(GUI.getGUIColor(), sf::Color(255, 255, 255), 173, "");
 
+    SliderFloat2 sliderFloat2(GUI.getGUIColor(), sf::Color(255, 255, 255), 200, "");
+
+    Button button(GUI.getGUI(), GUI.getGUIColor(), 140.0f, sf::Color(255, 255, 255), "Test", "Right Text!");
+
+    ListBox listbox(GUI.getGUIColor(), 200);
+
+
     bool checktest = false;
-    int lulw = 15;
+    int lulw = 30;
     float bruh = 15;
 
     int int3Test = 15;
@@ -42,6 +49,17 @@ int main()
     float float3Test = 0;
     float float3Test2 = 0;
     float float3Test3 = 0;
+
+    bool clicked = false;
+
+    float slider2Test = 0;
+    float slider2Test2 = 0;
+
+
+    int selectedItem = 1;
+    std::string items[]{ "option 1", "option 2", "option 3" };
+
+
 
     //test text
     sf::Font font; font.loadFromFile("fonts/cour.ttf"); sf::Text text; text.setCharacterSize(20);
@@ -80,13 +98,13 @@ int main()
         testfloat.setPosition(sf::Vector2f(int3Test, int3Test2));
         testfloat.setFillColor(sf::Color(testColor1, testColor2, testColor3));
 
-        test.setPosition(sf::Vector2f(float3Test, float3Test2));
-
+        test.setPosition(sf::Vector2f(slider2Test, slider2Test2));
 
         std::stringstream ss;
         ss << "Variable LULW = " << lulw;
         std::string actual_text = ss.str();
         text.setString(actual_text);
+
 
         
         std::stringstream ss2;
@@ -94,26 +112,41 @@ int main()
         std::string actual_text_float = ss2.str();
         text2.setString(actual_text_float);       
 
-        window.clear(sf::Color(123, 187, 219));    
+        if (button.isButtonClicked(window))
+        {
+            clicked = !clicked;
+        }
+        if (clicked) { test.setFillColor(sf::Color::Blue); }
+        if (!clicked) { test.setFillColor(sf::Color::Yellow); }
+
+        window.clear(sf::Color(56, 56, 56));
         window.draw(testfloat);
         GUI.UPDATE_GUI(window);
-        if (checktest) {
+        if (checktest && selectedItem == 2) {
             window.draw(test);
         }              
         GUI.DRAW_GUI(window);  
         if (checktest) {
-            Text2.Draw(window, 8, GUI.getGUI());
+            Text2.Draw(window, 10, GUI.getGUI());
         }
+
+        button.Draw(window, GUI.getGUI(), GUI.getGUIColor(), 9);
+
         Text1.Draw(window, 1, GUI.getGUI());        
         window.draw(text);
         window.draw(text2);
-        slider1.Draw(window, 2, GUI.getGUI(), lulw, 10, 400);
+        slider1.Draw(window, 2, GUI.getGUI(), lulw, 10, 100);
         slider2.Draw(window, 3, GUI.getGUI(), bruh, 0, 1280);
 
         sliderInt3.Draw(window, 4, GUI.getGUI(), int3Test, 0, 1280, int3Test2, 0, 720, int3Test3, 60, 400);
         sliderInt3Color.Draw(window, 5, GUI.getGUI(), testColor1, 0, 255, testColor2, 0, 255, testColor3, 0, 255);
         sliderFloat3.Draw(window, 6, GUI.getGUI(), float3Test, 0, 1280, float3Test2, 0, 720, float3Test3, 60, 400);
-        checkBox1.Draw(window, 7, GUI.getGUI(), checktest);
+
+        sliderFloat2.Draw(window, 7, GUI.getGUI(), slider2Test, 0, 1280, slider2Test2, 0, 720);
+        checkBox1.Draw(window, 8, GUI.getGUI(), checktest);
+
+        listbox.Draw(window, GUI.getGUI(), 11, 2, items, selectedItem);
+
         window.display();
     }
 
