@@ -50,5 +50,5 @@ int main()
     return 0;
 }
 ```
-
+![DEMO IMAGE](/demoimages/gui-starterimage.png/)
 
