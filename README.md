@@ -51,5 +51,6 @@ int main()
 }
 ```
 <h2> Output </h2>
+
 ![DEMO IMAGE2](/demoimages/gui-starterimage.PNG/)
 
