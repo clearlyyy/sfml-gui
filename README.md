@@ -58,8 +58,8 @@ A Tutorial on how to setup/use the GUI is currently being worked on.
 
 
 <h3>Known Issues</h3>
-Listboxes overlap over widgets, and the overlapped widgets still detect collision whilst being underneath the listbox.
-Slider Min/Max values can be slightly off at times.
+1. Listboxes overlap over widgets, and the overlapped widgets still detect collision whilst being underneath the listbox.
+2. Slider Min/Max values can be slightly off at times.
 
 
 
