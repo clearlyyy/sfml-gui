@@ -55,17 +55,49 @@ public:
 
 	void UPDATE_GUI(sf::RenderWindow& window)
 	{
-		if (sf::Mouse::getPosition(window).x >= TOP_BAR.getPosition().x &&
-			sf::Mouse::getPosition(window).x <= TOP_BAR.getPosition().x + TOP_BAR.getSize().x &&
-			sf::Mouse::getPosition(window).y >= TOP_BAR.getPosition().y &&
-			sf::Mouse::getPosition(window).y <= TOP_BAR.getPosition().y + TOP_BAR.getSize().y)
+		if(window.hasFocus()) // Checks if the window has focus to prevent moving the gui while not focused
 		{
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			// If gui isn't selected it checks for left clicks
+			// If gui is selected it checks for when you let go of lmb
+			switch(isSelected)
 			{
-				GUI_BACKGROUND.setPosition(sf::Mouse::getPosition(window).x + GUI_BACKGROUND.getSize().x
-					/ sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y + GUI_BACKGROUND.getSize().y / 2.0f - 10.0f);
+				case false:
+					if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					{
+						if (sf::Mouse::getPosition(window).x >= TOP_BAR.getPosition().x &&
+							sf::Mouse::getPosition(window).x <= TOP_BAR.getPosition().x + TOP_BAR.getSize().x &&
+							sf::Mouse::getPosition(window).y >= TOP_BAR.getPosition().y &&
+							sf::Mouse::getPosition(window).y <= TOP_BAR.getPosition().y + TOP_BAR.getSize().y)
+						{
+							isSelected = true;
+							mouseOffSetX = sf::Mouse::getPosition(window).x - GUI_BACKGROUND.getPosition().x;
+						}
+					}
+					break;
+				case true:
+					if(!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					{
+						isSelected = false;
+					}
+					break;
+			}
+
+			// If gui is selected it updates it's position
+			switch(isSelected)
+			{
+				case true:
+				GUI_BACKGROUND.setPosition((sf::Mouse::getPosition(window).x
+											+ GUI_BACKGROUND.getSize().x
+											/ sf::Mouse::getPosition(window).x) - mouseOffSetX,
+											sf::Mouse::getPosition(window).y
+											+ GUI_BACKGROUND.getSize().y
+											/ 2.0f - 10.0f);
+											
 				TOP_BAR.setPosition(sf::Vector2f(GUI_BACKGROUND.getGlobalBounds().left, GUI_BACKGROUND.getGlobalBounds().top));
 				WINDOW_TEXT.setPosition(sf::Vector2f(GUI_BACKGROUND.getGlobalBounds().left + 8.0f, GUI_BACKGROUND.getGlobalBounds().top + 2.0f));
+					break;
+				default:
+					break;
 			}
 		}
 
@@ -87,6 +119,9 @@ private:
 	sf::Font font;
 	int ELEMENT_COUNT = 0;
 	bool flag = true;
+	
+	bool isSelected = false; // Whether the gui is selected
+	float mouseOffSetX = 0.0f; // X offset relative to the mouse
 	//bool slots[5] = {false, false, false, false, false};
 
 	struct GUI_IDS {
