@@ -19,15 +19,15 @@ int main()
     text Text2(GUI.getGUI(), "Text Number 2!", sf::Color(255, 255, 255), window);
     CheckBox checkBox1(GUI.getGUIColor(), "Checkbox Test 1", sf::Color(255, 255, 255));
    
-    SliderInt slider1(GUI.getGUIColor(), sf::Color(255, 255, 255), 200, "Slider Test INT!");
-    SliderFloat slider2(GUI.getGUIColor(), sf::Color(255, 255, 255), 300, "");
+    Slider<int, 1> slider1(GUI.getGUIColor().getFillColor(), sf::Color(255, 255, 255), 200, GUI.getFont(), "Slider Test INT!", 10, 15);
+    Slider<float, 1> slider2(GUI.getGUIColor().getFillColor(), sf::Color(255, 255, 255), 300, GUI.getFont(), "", 0, 1280);
 
-    SliderInt3 sliderInt3(GUI.getGUIColor(), sf::Color(255, 255, 255), 100, "slider int 3!");
-    SliderInt3 sliderInt3Color(GUI.getGUIColor(), sf::Color(255, 255, 255), 173, "");
+    Slider<int, 3> sliderInt3(GUI.getGUIColor().getFillColor(), sf::Color(255, 255, 255), 100, GUI.getFont(), "slider int 3!", 0, 0, 60, 1280, 720, 400);
+    Slider<int, 3> sliderInt3Color(GUI.getGUIColor().getFillColor(), sf::Color(255, 255, 255), 173, GUI.getFont(), "", 0, 0, 0, 255, 255, 255);
 
-    SliderFloat3 sliderFloat3(GUI.getGUIColor(), sf::Color(255, 255, 255), 173, "");
+    Slider<float, 3> sliderFloat3(GUI.getGUIColor().getFillColor(), sf::Color(255, 255, 255), 173, GUI.getFont(), "", 0, 0, 60, 1280, 720, 400);
 
-    SliderFloat2 sliderFloat2(GUI.getGUIColor(), sf::Color(255, 255, 255), 200, "");
+    Slider<float, 2> sliderFloat2(GUI.getGUIColor().getFillColor(), sf::Color(255, 255, 255), 200, GUI.getFont(), "", 0, 0, 1280, 720);
 
     Button button(GUI.getGUI(), GUI.getGUIColor(), 140.0f, sf::Color(255, 255, 255), "Test", "Right Text!");
 
@@ -38,28 +38,18 @@ int main()
     int lulw = 30;
     float bruh = 15;
 
-    int int3Test = 15;
-    int int3Test2 = 15;
-    int int3Test3 = 15;
+    int int3Test[3] = {15, 15, 15};
 
-    int testColor1 = 0;
-    int testColor2 = 0;
-    int testColor3 = 0;
+    int testColor[3] = {0, 0, 0};
 
-    float float3Test = 0;
-    float float3Test2 = 0;
-    float float3Test3 = 0;
+    float float3Test[3] = {0, 0, 0};
 
     bool clicked = false;
 
-    float slider2Test = 0;
-    float slider2Test2 = 0;
-
+    float slider2Test[2] {0, 0};
 
     int selectedItem = 1;
     std::string items[]{ "option 1", "option 2", "option 3" };
-
-
 
     //test text
     sf::Font font; font.loadFromFile("fonts/cour.ttf"); sf::Text text; text.setCharacterSize(20);
@@ -95,10 +85,10 @@ int main()
 
         test.setSize(sf::Vector2f(lulw, 200));
 
-        testfloat.setPosition(sf::Vector2f(int3Test, int3Test2));
-        testfloat.setFillColor(sf::Color(testColor1, testColor2, testColor3));
+        testfloat.setPosition(int3Test[0], int3Test[1]);
+        testfloat.setFillColor(sf::Color(testColor[0], testColor[1], testColor[2]));
 
-        test.setPosition(sf::Vector2f(slider2Test, slider2Test2));
+        test.setPosition(sf::Vector2f(slider2Test[0], slider2Test[1]));
 
         std::stringstream ss;
         ss << "Variable LULW = " << lulw;
@@ -135,14 +125,14 @@ int main()
         Text1.Draw(window, 1, GUI.getGUI());        
         window.draw(text);
         window.draw(text2);
-        slider1.Draw(window, 2, GUI.getGUI(), lulw, 10, 100);
-        slider2.Draw(window, 3, GUI.getGUI(), bruh, 0, 1280);
+        slider1.draw(window, 2, GUI.getGUI(), &lulw);
+        slider2.draw(window, 3, GUI.getGUI(), &bruh);
 
-        sliderInt3.Draw(window, 4, GUI.getGUI(), int3Test, 0, 1280, int3Test2, 0, 720, int3Test3, 60, 400);
-        sliderInt3Color.Draw(window, 5, GUI.getGUI(), testColor1, 0, 255, testColor2, 0, 255, testColor3, 0, 255);
-        sliderFloat3.Draw(window, 6, GUI.getGUI(), float3Test, 0, 1280, float3Test2, 0, 720, float3Test3, 60, 400);
+        sliderInt3.draw(window, 4, GUI.getGUI(), int3Test);
+        sliderInt3Color.draw(window, 5, GUI.getGUI(), testColor);
+        sliderFloat3.draw(window, 6, GUI.getGUI(), float3Test);
 
-        sliderFloat2.Draw(window, 7, GUI.getGUI(), slider2Test, 0, 1280, slider2Test2, 0, 720);
+        sliderFloat2.draw(window, 7, GUI.getGUI(), slider2Test);
         checkBox1.Draw(window, 8, GUI.getGUI(), checktest);
 
         listbox.Draw(window, GUI.getGUI(), 11, 2, items, selectedItem);
