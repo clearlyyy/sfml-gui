@@ -53,6 +53,11 @@ public:
 		window.draw(WINDOW_TEXT);
 	}
 
+	sf::Font& getFont()
+	{
+		return font;
+	}
+	
 	void UPDATE_GUI(sf::RenderWindow& window)
 	{
 		if(window.hasFocus()) // Checks if the window has focus to prevent moving the gui while not focused
