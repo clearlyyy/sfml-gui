@@ -30,7 +30,7 @@ int main()
     gui NewGui("Hello SFML-GUI!", sf::Vector2f(600, 400), sf::Vector2f(300, 300), sf::Color(41, 39, 39, 128), sf::Color(217, 126, 95), sf::Color(46, 45, 46));
     CheckBox checkBox(NewGui.getGUIColor(), "This is A CheckBox!", sf::Color(255, 255, 255));
     text Text(NewGui.getGUI(), "This is Some Text!", sf::Color(255, 255, 255), window);
-    SliderInt newSlider(NewGui.getGUIColor(), sf::Color(255, 255, 255), 200, "This is a Slider!");
+    Slider<int, 1> newSlider(NewGui.getGUIColor().getFillColor(), sf::Color(255, 255, 255), 200.0f, NewGui.getFont(), "This is a Slider!", 10, 900);
     bool testBoolean;
     int testSliderValue;
     while (window.isOpen())
@@ -44,7 +44,7 @@ int main()
         NewGui.DRAW_GUI(window);
         Text.Draw(window, 1, NewGui.getGUI());
         checkBox.Draw(window, 2, NewGui.getGUI(), testBoolean);
-        newSlider.Draw(window, 3, NewGui.getGUI(), testSliderValue, 10, 900);
+        newSlider.draw(window, 3, NewGui.getGUI(), &testSliderValue);
         window.display();
     }
     return 0;
@@ -59,7 +59,5 @@ A Tutorial on how to setup/use the GUI is currently being worked on.
 
 <h3>Known Issues</h3>
 1. Listboxes overlap over widgets. the overlapped widgets still detect collision whilst being underneath the listbox.
-2. Slider Min/Max values can be slightly off at times.
-
 
 
