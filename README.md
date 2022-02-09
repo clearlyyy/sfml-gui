@@ -1,6 +1,6 @@
 
 <h1 align="center">:zap:SFML-GUI:zap:</h1>
-<h2 align="center"> A Work-in-Progress Graphical User Interface Library for SFML written in C++ </h2>
+<h2 align="center"> A Graphical User Interface Library for SFML written in C++ </h2>
 
 ![DEMO IMAGE](/demoimages/sfml-demoimage.png/)
 
