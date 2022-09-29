@@ -54,9 +54,6 @@ int main()
 
 ![DEMO IMAGE2](/demoimages/gui-starterimage.PNG/)
 
-
-
-<h3>Known Issues</h3>
-1. Listboxes overlap over widgets. the overlapped widgets still detect collision whilst being underneath the listbox.
+Project is currently not being worked on.
 
 
