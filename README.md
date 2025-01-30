@@ -9,7 +9,7 @@ https://github.com/ocornut/imgui
 
 <h1></h1>
 
-This project is currently a W.I.P, but it is fully functional, and will work in your own projects,
+This Project is no longer being worked on, but should still work in your own projects,
 All that needs to be added is more widgets.
 
 Currently sfml-gui Supports the following widgets.
@@ -54,6 +54,5 @@ int main()
 
 ![DEMO IMAGE2](/demoimages/gui-starterimage.PNG/)
 
-Project is currently not being worked on.
 
 
