@@ -1,0 +1,3 @@
+C:/Users/clearly/Desktop/Code/sfml-gui/build/CMakeFiles/sfml-gui-testbuild.dir
+C:/Users/clearly/Desktop/Code/sfml-gui/build/CMakeFiles/edit_cache.dir
+C:/Users/clearly/Desktop/Code/sfml-gui/build/CMakeFiles/rebuild_cache.dir

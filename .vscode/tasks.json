@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build SFML Project",
+            "type": "shell",
+            "command": "cmake --build build --config Release",
+            "group": "none", 
+            "problemMatcher": ["$gcc"],
+            "detail": "Builds the SFML project using CMake"
+        },
+        {
+            "label": "Run SFML Project",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/sfml-gui-testbuild.exe",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": "Build SFML Project",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}
+
