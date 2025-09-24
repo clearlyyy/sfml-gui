@@ -2,10 +2,12 @@
 #include "sfgui-utils.hpp"
 
 sf::Font SFGUI::TEXT_FONT; 
+
+// Constructor
+// This initializes the GUI Window, Placing things like the BG, BAR, Hide button, close button, and title in the correct place.
 SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window) : pos(DEFAULT_GUI_POSITION), dragging(false),
                                                     WIN_TEXT(TEXT_FONT, "sfml-gui", CHARACTER_SIZE)
 {
-
 
     SF_WINDOW = &window;
 
@@ -34,7 +36,6 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window) : pos(DEFAULT_GUI_POSITION), d
     std::cout << "Failed to load CLOSE_TEXTURE" << std::endl;
     if (!HIDE_TEXTURE.loadFromFile("hide_tex.png"))
     std::cout << "Failed to load HIDE_TEXTURE" << std::endl;
-    
     
     HIDE_BUTTON.setTexture(&HIDE_TEXTURE);
     HIDE_BUTTON.setSize(sf::Vector2f(DEFAULT_BAR_HEIGHT/2, DEFAULT_BAR_HEIGHT/2));
@@ -101,6 +102,7 @@ void SFGUI::SFMLGUI::Update()
     if (!closed) {
     sf::Vector2i mousePosWindow = sf::Mouse::getPosition(*SF_WINDOW);
     sf::Vector2f mousePos = static_cast<sf::Vector2f>(mousePosWindow);
+    cursorToUse = sf::Cursor::Type::Arrow;
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 
@@ -148,7 +150,7 @@ void SFGUI::SFMLGUI::Update()
     if (isMouseInsideRect(*SF_WINDOW, HIDE_BUTTON_BG)) {
         hovering = true;
         HIDE_BUTTON.setScale(sf::Vector2f(1.3f, 1.3f));
-        HIDE_BUTTON_BG.setFillColor(sf::Color(0, 0, 0, 130));
+        HIDE_BUTTON_BG.setFillColor(sf::Color(0, 0, 0, 90));
         if (leftMousePressed && !leftMouseWasPressed) {
             if (!hidden)
                 this->Hide();
@@ -164,7 +166,7 @@ void SFGUI::SFMLGUI::Update()
     if (isMouseInsideRect(*SF_WINDOW, CLOSE_BUTTON_BG)) {
         hovering = true;
         CLOSE_BUTTON.setScale(sf::Vector2f(1.3f, 1.3f));
-        CLOSE_BUTTON_BG.setFillColor(sf::Color(0, 0, 0, 130));
+        CLOSE_BUTTON_BG.setFillColor(sf::Color(0, 0, 0, 90));
         if (leftMousePressed && !leftMouseWasPressed) {
             this->Close();
         }
@@ -173,18 +175,30 @@ void SFGUI::SFMLGUI::Update()
         CLOSE_BUTTON_BG.setFillColor(sf::Color::Transparent);
     }
 
-    if (hovering)
-        SF_WINDOW->setMouseCursor(sf::Cursor(sf::Cursor::Type::Hand));
-    else
-        SF_WINDOW->setMouseCursor(sf::Cursor(sf::Cursor::Type::Arrow));
-
-
     leftMouseWasPressed = leftMousePressed;
+    
+    // Make sure each widget in the gui gets SoftUpdated.
 
+    for (SFWIDGET* widget : SF_WIDGETS) {
+        widget->SoftUpdate();
+
+        if (widget->hovering) {
+            cursorToUse = sf::Cursor::Type::Hand;
+        }
+    }
+    if (hovering) {
+        cursorToUse = sf::Cursor::Type::Hand;
+    }
+
+
+    SF_WINDOW->setMouseCursor(sf::Cursor(cursorToUse));
+
+    //////////////////////
     } else {
         //Window is closed.
         SF_WINDOW->setMouseCursor(sf::Cursor(sf::Cursor::Type::Arrow));
     }
+
 
 
 }
@@ -221,5 +235,7 @@ void SFGUI::SFMLGUI::Setup() {
         }
         sf::Vector2f finalPosition = sf::Vector2f(xPos, yPos);
         SF_WIDGETS[i]->setPosition(finalPosition);
+        SF_WIDGETS[i]->setWindow(SF_WINDOW);
     }
+
 }

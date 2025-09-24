@@ -1,9 +1,9 @@
 // button.hpp
 // Button Widget.
 
-#include "sf_widget.h"
-#include "gui.hpp"
-#include "sfgui-utils.hpp"
+#include "../sf_widget.h"
+#include "../gui.hpp"
+#include "../sfgui-utils.hpp"
 
 namespace SFGUI {
 class SFBUTTON : public SFWIDGET
@@ -29,6 +29,7 @@ class SFBUTTON : public SFWIDGET
             this->d_parts.push_back(&b_text);
 
             w_size = computeBoundingBox(t_parts);
+
         }
 
         void setPosition(sf::Vector2f pos) override {
@@ -41,9 +42,37 @@ class SFBUTTON : public SFWIDGET
             b_text.setString(text);
         }
 
+        void SoftUpdate() override {
+            hovering = false;
+            clicked = false;
+            if (isMouseInsideRect(*SF_WINDOW, b_background)) {
+                b_background.setFillColor(HOVER_COLOR);
+                hovering = true;
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && !leftMouseWasPressed) {
+                    clicked = true;
+                } else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+                    b_background.setFillColor(CLICK_COLOR);
+                    b_text.setScale(sf::Vector2f(0.9f, 0.9f));
+                } else {
+                    b_text.setScale(sf::Vector2f(1.f, 1.f));
+                }
+            }
+            else
+            {
+                b_background.setFillColor(GUI_PRIMARY_COLOR);
+            }
+            leftMouseWasPressed = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+        }
+
+        bool isClicked() {
+            return clicked;
+        }
+
     private:
     sf::RectangleShape b_background;
     sf::Text b_text;
+    bool clicked = false;
+    bool leftMouseWasPressed = false;
 
     sf::Vector2f b_size;
 };

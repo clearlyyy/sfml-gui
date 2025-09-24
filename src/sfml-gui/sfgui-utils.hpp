@@ -21,3 +21,20 @@ inline bool isMouseInsideRect(sf::RenderWindow& window, const sf::RectangleShape
     sf::FloatRect bounds = rect.getGlobalBounds();
     return (bounds.contains(static_cast<sf::Vector2f>(mousePos)));
 }
+
+inline sf::Color Darken(sf::Shape &shape)
+{
+    sf::Color darkenedColor = sf::Color(shape.getFillColor().r - 20, shape.getFillColor().g - 20, shape.getFillColor().b - 20);
+    return darkenedColor;
+}
+
+inline void scaleFromCenter(sf::RectangleShape& rect, const float scaleFactor)
+{
+    sf::Vector2f oldSize = rect.getSize();
+    sf::Vector2f newSize(sf::Vector2f(oldSize.x * scaleFactor, oldSize.y * scaleFactor));
+
+    sf::Vector2f offset = (newSize - oldSize) / 2.f;
+    rect.setScale(sf::Vector2f(scaleFactor, scaleFactor));
+
+    rect.setPosition(rect.getPosition() - offset);
+}

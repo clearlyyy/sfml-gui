@@ -81,6 +81,7 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj
  C:/Libraries/SFML/include/SFML/Window/WindowBase.inl
  C:/Libraries/SFML/include/SFML/Window/WindowEnums.hpp
  C:/Libraries/SFML/include/SFML/Window/WindowHandle.hpp
+ C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp
  C:/mingw64/include/c++/15.2.0/array
  C:/mingw64/include/c++/15.2.0/backward/auto_ptr.h
  C:/mingw64/include/c++/15.2.0/backward/binders.h
@@ -293,10 +294,9 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj
  C:/mingw64/x86_64-w64-mingw32/include/vadefs.h
  C:/mingw64/x86_64-w64-mingw32/include/wchar.h
  C:/mingw64/x86_64-w64-mingw32/include/wctype.h
- C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/button.hpp
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.hpp
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h
- C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp
+ C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/button.hpp
 
 CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.cpp

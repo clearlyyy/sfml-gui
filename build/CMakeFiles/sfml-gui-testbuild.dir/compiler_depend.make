@@ -80,6 +80,7 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj: C:/Users/clearly/Desktop/Cod
   C:/Libraries/SFML/include/SFML/Window/WindowBase.inl \
   C:/Libraries/SFML/include/SFML/Window/WindowEnums.hpp \
   C:/Libraries/SFML/include/SFML/Window/WindowHandle.hpp \
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp \
   C:/mingw64/include/c++/15.2.0/array \
   C:/mingw64/include/c++/15.2.0/backward/auto_ptr.h \
   C:/mingw64/include/c++/15.2.0/backward/binders.h \
@@ -292,10 +293,9 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj: C:/Users/clearly/Desktop/Cod
   C:/mingw64/x86_64-w64-mingw32/include/vadefs.h \
   C:/mingw64/x86_64-w64-mingw32/include/wchar.h \
   C:/mingw64/x86_64-w64-mingw32/include/wctype.h \
-  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/button.hpp \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.hpp \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h \
-  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/button.hpp
 
 CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj: C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.cpp \
   C:/Libraries/SFML/include/SFML/Config.hpp \
@@ -1104,6 +1104,10 @@ C:/Libraries/SFML/include/SFML/Window/WindowEnums.hpp:
 
 C:/Libraries/SFML/include/SFML/Window/WindowHandle.hpp:
 
+C:/mingw64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h:
+
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp:
+
 C:/mingw64/include/c++/15.2.0/sstream:
 
 C:/mingw64/include/c++/15.2.0/bits/memory_resource.h:
@@ -1263,10 +1267,6 @@ C:/mingw64/include/c++/15.2.0/bits/std_abs.h:
 C:/mingw64/include/c++/15.2.0/bits/stl_function.h:
 
 C:/mingw64/include/c++/15.2.0/bits/stl_iterator.h:
-
-C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp:
-
-C:/mingw64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h:
 
 C:/mingw64/include/c++/15.2.0/bits/stl_iterator_base_types.h:
 
@@ -1484,9 +1484,9 @@ C:/mingw64/x86_64-w64-mingw32/include/wchar.h:
 
 C:/mingw64/x86_64-w64-mingw32/include/wctype.h:
 
-C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/button.hpp:
-
 C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h:
+
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/button.hpp:
 
 C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.cpp:
 

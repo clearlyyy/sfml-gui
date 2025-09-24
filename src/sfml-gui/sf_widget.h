@@ -8,6 +8,7 @@
 #include <cstdint>
 #include <SFML/Graphics.hpp>
 
+
 namespace SFGUI {
 class SFWIDGET {
     public:
@@ -30,9 +31,12 @@ class SFWIDGET {
         //Set Position (This should be overridden for each widget.)
         virtual void setPosition(sf::Vector2f pos);
 
+        virtual void setWindow(sf::RenderWindow* window);
+
         int w_index;
         sf::FloatRect w_size;
         sf::Vector2f w_pos;
+        bool hovering = false;
     private:
 
     
@@ -41,6 +45,8 @@ class SFWIDGET {
         
     protected:
         sf::FloatRect computeBoundingBox(const std::vector<sf::Transformable*>& parts);
+        sf::RenderWindow* SF_WINDOW;
+
         // All SFML components that make up a widget.
         // Two lists are needed to account for text, shape and sprites.
         // We need Drawables for drawing, and Transformables for pos, size calculations.
@@ -48,5 +54,6 @@ class SFWIDGET {
         // This just means that for every widget, we must fill both arrays for every shape, text or sprite we create. 
         std::vector<sf::Transformable*> t_parts;
         std::vector<sf::Drawable*> d_parts;
+
 };
 }

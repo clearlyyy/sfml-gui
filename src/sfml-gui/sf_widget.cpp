@@ -45,7 +45,12 @@ void SFGUI::SFWIDGET::Update()
 
 void SFGUI::SFWIDGET::SoftUpdate()
 {
-    // do nothing right now   
+    // Override this 
+}
+
+void SFGUI::SFWIDGET::setWindow(sf::RenderWindow* window)
+{
+    SF_WINDOW = window;
 }
 
 sf::FloatRect SFGUI::SFWIDGET::computeBoundingBox(const std::vector<sf::Transformable*>& parts) {
