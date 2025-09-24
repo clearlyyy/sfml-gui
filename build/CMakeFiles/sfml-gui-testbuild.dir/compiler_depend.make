@@ -295,7 +295,7 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj: C:/Users/clearly/Desktop/Cod
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/button.hpp \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.hpp \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h \
-  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.cpp
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp
 
 CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj: C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.cpp \
   C:/Libraries/SFML/include/SFML/Config.hpp \
@@ -589,7 +589,8 @@ CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj: C:/Users/clearly/Des
   C:/mingw64/x86_64-w64-mingw32/include/wchar.h \
   C:/mingw64/x86_64-w64-mingw32/include/wctype.h \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.hpp \
-  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h \
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp
 
 CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/sf_widget.cpp.obj: C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.cpp \
   C:/Libraries/SFML/include/SFML/Config.hpp \
@@ -1097,8 +1098,6 @@ C:/mingw64/include/c++/15.2.0/cwctype:
 
 C:/Libraries/SFML/include/SFML/Window/Sensor.hpp:
 
-C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.cpp:
-
 C:/Libraries/SFML/include/SFML/Window/Touch.hpp:
 
 C:/Libraries/SFML/include/SFML/Window/WindowEnums.hpp:
@@ -1264,6 +1263,8 @@ C:/mingw64/include/c++/15.2.0/bits/std_abs.h:
 C:/mingw64/include/c++/15.2.0/bits/stl_function.h:
 
 C:/mingw64/include/c++/15.2.0/bits/stl_iterator.h:
+
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp:
 
 C:/mingw64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h:
 

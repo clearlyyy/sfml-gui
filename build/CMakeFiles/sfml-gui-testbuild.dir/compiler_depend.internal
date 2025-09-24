@@ -296,7 +296,7 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/button.hpp
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.hpp
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h
- C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.cpp
+ C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp
 
 CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.cpp
@@ -592,6 +592,7 @@ CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj
  C:/mingw64/x86_64-w64-mingw32/include/wctype.h
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.hpp
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h
+ C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp
 
 CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/sf_widget.cpp.obj
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.cpp

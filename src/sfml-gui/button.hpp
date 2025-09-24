@@ -3,7 +3,7 @@
 
 #include "sf_widget.h"
 #include "gui.hpp"
-#include "sfgui-utils.cpp"
+#include "sfgui-utils.hpp"
 
 namespace SFGUI {
 class SFBUTTON : public SFWIDGET

@@ -288,4 +288,5 @@ CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj: \
  C:/Libraries/SFML/include/SFML/System/MemoryInputStream.hpp \
  C:/Libraries/SFML/include/SFML/System/Sleep.hpp \
  C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui\sf_widget.h \
- C:/mingw64/include/c++/15.2.0/iostream
+ C:/mingw64/include/c++/15.2.0/iostream \
+ C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui\sfgui-utils.hpp

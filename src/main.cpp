@@ -6,7 +6,7 @@
 int main()
 {
 
-    sf::RenderWindow window(sf::VideoMode({1280, 720}), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode({1920, 1080}), "SFML works!");
 
     SFGUI::SFMLGUI gui(window);
     SFGUI::SFBUTTON button;
@@ -23,8 +23,7 @@ int main()
 
     std::cout << "ding" << std::endl;
 
-    gui.Update();
-
+    gui.Setup();
     gui.SF_WIDGETS[0]->DebugOutput();
     gui.SF_WIDGETS[1]->DebugOutput();
     while (window.isOpen())
@@ -35,7 +34,7 @@ int main()
                 window.close();
         }
 
-        window.clear();
+        window.clear(sf::Color(129, 197, 240));
         gui.Draw();
         gui.Update();
         window.display();

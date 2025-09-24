@@ -290,4 +290,4 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj: \
  C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/sf_widget.h \
  C:/mingw64/include/c++/15.2.0/iostream \
  C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/button.hpp \
- C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/sfgui-utils.cpp
+ C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/sfgui-utils.hpp

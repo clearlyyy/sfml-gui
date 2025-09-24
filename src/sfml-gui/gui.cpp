@@ -1,32 +1,91 @@
 #include "gui.hpp"
+#include "sfgui-utils.hpp"
 
 sf::Font SFGUI::TEXT_FONT; 
-SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window) : pos(DEFAULT_GUI_POSITION)
+SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window) : pos(DEFAULT_GUI_POSITION), dragging(false),
+                                                    WIN_TEXT(TEXT_FONT, "sfml-gui", CHARACTER_SIZE)
 {
+
+
     SF_WINDOW = &window;
 
     // Load a font once globally
-    if (!SFGUI::TEXT_FONT.openFromFile("Roboto-Medium.ttf")) {
+    if (!SFGUI::TEXT_FONT.openFromFile("Poppins-Medium.ttf")) {
         std::cout << "Default Font failed to load :(" << std::endl;
     }
 
     BG.setFillColor(GUI_BACKGROUND_COLOR);
     BG.setSize(sf::Vector2f(DEFAULT_GUI_SIZE_X, DEFAULT_GUI_SIZE_Y)); 
-    BG.setPosition(DEFAULT_GUI_POSITION); 
+    BG.setPosition(DEFAULT_GUI_POSITION);
+    BG.setOutlineThickness(BORDER_THICKNESS);
+    BG.setOutlineColor(BORDER_COLOR);
 
-    BAR.setPosition(sf::Vector2f(DEFAULT_GUI_POSITION.x, (DEFAULT_GUI_POSITION.y - DEFAULT_BAR_HEIGHT)));
     BAR.setFillColor(GUI_PRIMARY_COLOR);
+    BAR.setPosition(sf::Vector2f(DEFAULT_GUI_POSITION.x, (DEFAULT_GUI_POSITION.y - DEFAULT_BAR_HEIGHT)));
     BAR.setSize(sf::Vector2f(DEFAULT_GUI_SIZE_X, DEFAULT_BAR_HEIGHT));
+    BAR.setOutlineThickness(BORDER_THICKNESS);
+    BAR.setOutlineColor(BORDER_COLOR);
 
+    sf::FloatRect barBounds = BAR.getGlobalBounds();
+
+    WIN_TEXT.setFillColor(GUI_TEXT_COLOR);
+    
+    if (!CLOSE_TEXTURE.loadFromFile("close_tex.png"))
+    std::cout << "Failed to load CLOSE_TEXTURE" << std::endl;
+    if (!HIDE_TEXTURE.loadFromFile("hide_tex.png"))
+    std::cout << "Failed to load HIDE_TEXTURE" << std::endl;
+    
+    
+    HIDE_BUTTON.setTexture(&HIDE_TEXTURE);
+    HIDE_BUTTON.setSize(sf::Vector2f(DEFAULT_BAR_HEIGHT/2, DEFAULT_BAR_HEIGHT/2));
+    HIDE_BUTTON.setOrigin(sf::Vector2f(HIDE_BUTTON.getSize().x/2.f, HIDE_BUTTON.getSize().y/2.f));
+    HIDE_BUTTON_BG.setSize(sf::Vector2f(DEFAULT_BAR_HEIGHT, DEFAULT_BAR_HEIGHT));
+    HIDE_BUTTON_BG.setPosition(BAR.getPosition());
+    HIDE_BUTTON_BG.setFillColor(sf::Color::Transparent);
+    HIDE_BUTTON.setPosition(sf::Vector2f(BAR.getPosition().x + WIDGET_PADDING_HOR, BAR.getPosition().y + BAR.getSize().y / 2.f));
+    
+    CLOSE_BUTTON.setSize(sf::Vector2f(DEFAULT_BAR_HEIGHT/2, DEFAULT_BAR_HEIGHT/2));
+    CLOSE_BUTTON.setOrigin(sf::Vector2f(CLOSE_BUTTON.getSize().x/2.f, CLOSE_BUTTON.getSize().y/2.f));
+    CLOSE_BUTTON.setTexture(&CLOSE_TEXTURE);
+    CLOSE_BUTTON_BG.setSize(sf::Vector2f(DEFAULT_BAR_HEIGHT, DEFAULT_BAR_HEIGHT));
+    CLOSE_BUTTON_BG.setPosition(sf::Vector2f(BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x, BAR.getPosition().y));
+    CLOSE_BUTTON_BG.setFillColor(sf::Color::Transparent);
+    CLOSE_BUTTON.setPosition(CLOSE_BUTTON_BG.getPosition() + sf::Vector2f(CLOSE_BUTTON_BG.getSize().x/2, CLOSE_BUTTON_BG.getSize().y/2));
+    
+    if (!hidden)
+        HIDE_BUTTON.setRotation(sf::degrees(180));
+    
+    this->setWindowTitle("SFML-GUI");
+    this->Update();
+}
+
+void SFGUI::SFMLGUI::setWindowTitle(const std::string& text)
+{
+    WIN_TITLE = text;
+    WIN_TEXT.setString(WIN_TITLE);
+    sf::FloatRect barBounds = BAR.getGlobalBounds();
+    sf::FloatRect textBounds = WIN_TEXT.getLocalBounds();
+
+    WIN_TEXT.setPosition(sf::Vector2f(BAR.getPosition().x + (WIDGET_PADDING_HOR*2) + HIDE_BUTTON.getSize().x,
+                         barBounds.position.y + (barBounds.size.y - textBounds.size.y) / 2.f - textBounds.position.y));
 }
 
 void SFGUI::SFMLGUI::Draw()
 {
-   SF_WINDOW->draw(BG);
-   SF_WINDOW->draw(BAR);
-   for (SFWIDGET* widget : SF_WIDGETS) {
-        widget->Draw(*SF_WINDOW);
-   } 
+    if (!closed) {
+        if (!hidden) {
+            SF_WINDOW->draw(BG);
+            for (SFWIDGET* widget : SF_WIDGETS) {
+                widget->Draw(*SF_WINDOW);
+            } 
+        }
+        SF_WINDOW->draw(BAR);
+        SF_WINDOW->draw(WIN_TEXT);
+        SF_WINDOW->draw(CLOSE_BUTTON_BG);
+        SF_WINDOW->draw(CLOSE_BUTTON);
+        SF_WINDOW->draw(HIDE_BUTTON_BG);
+        SF_WINDOW->draw(HIDE_BUTTON);
+    }
 }
 
 void SFGUI::SFMLGUI::Add(SFWIDGET& widget)
@@ -34,8 +93,121 @@ void SFGUI::SFMLGUI::Add(SFWIDGET& widget)
     SF_WIDGETS.push_back(&widget);
 }
 
+
+// TODO: THIS FUNCTION GLOBALLY HIJACKS THE MOUSE CURSOR STATE, FIX!
 void SFGUI::SFMLGUI::Update()
 {
+
+    if (!closed) {
+    sf::Vector2i mousePosWindow = sf::Mouse::getPosition(*SF_WINDOW);
+    sf::Vector2f mousePos = static_cast<sf::Vector2f>(mousePosWindow);
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+
+        if (!dragging && isMouseInsideRect(*SF_WINDOW, BAR)) {
+            dragging = true;
+            dragOffset = mousePos - pos; 
+        }
+
+        if (dragging) {
+            pos = mousePos - dragOffset;
+            // Set Position of GUI Window Elements
+            BG.setPosition(pos);
+            BAR.setPosition(sf::Vector2f(pos.x, pos.y - DEFAULT_BAR_HEIGHT));
+            this->setWindowTitle(WIN_TITLE);
+            HIDE_BUTTON_BG.setPosition(BAR.getPosition());
+            HIDE_BUTTON.setPosition(HIDE_BUTTON_BG.getPosition() + sf::Vector2f(HIDE_BUTTON_BG.getSize().x/2, HIDE_BUTTON_BG.getSize().y/2));
+            CLOSE_BUTTON_BG.setPosition(sf::Vector2f(BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x, BAR.getPosition().y));
+            CLOSE_BUTTON.setPosition(CLOSE_BUTTON_BG.getPosition() + sf::Vector2f(CLOSE_BUTTON_BG.getSize().x/2, CLOSE_BUTTON_BG.getSize().y/2));
+            if (!hidden) {
+                for (int i = 0; i < SF_WIDGETS.size(); i++)
+                { 
+                    float xPos = 0, yPos = 0;
+                    //First Widget
+                    if (SF_WIDGETS[i]->w_index == 0) {
+                        xPos = WIDGET_PADDING_HOR + pos.x;
+                        yPos = WIDGET_PADDING_VER + pos.y;
+                    } else { // All other widgets
+                        xPos = WIDGET_PADDING_HOR + pos.x;
+                        yPos = SF_WIDGETS[i-1]->w_pos.y + SF_WIDGETS[i-1]->w_size.size.y + WIDGET_PADDING_VER; 
+                    }
+                    sf::Vector2f finalPosition = sf::Vector2f(xPos, yPos);
+                    SF_WIDGETS[i]->setPosition(finalPosition);
+                }
+            }
+        }
+    } else {
+        // Mouse Released
+        dragging = false;
+    }
+
+    bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    bool hovering = false;
+
+    // Check if hide button is pressed.
+    if (isMouseInsideRect(*SF_WINDOW, HIDE_BUTTON_BG)) {
+        hovering = true;
+        HIDE_BUTTON.setScale(sf::Vector2f(1.3f, 1.3f));
+        HIDE_BUTTON_BG.setFillColor(sf::Color(0, 0, 0, 130));
+        if (leftMousePressed && !leftMouseWasPressed) {
+            if (!hidden)
+                this->Hide();
+            else
+                this->Show();
+        }
+    } else {
+        HIDE_BUTTON.setScale(sf::Vector2f(1.0f, 1.0f));
+        HIDE_BUTTON_BG.setFillColor(sf::Color::Transparent);
+    }
+
+    // Check if close button is pressed.
+    if (isMouseInsideRect(*SF_WINDOW, CLOSE_BUTTON_BG)) {
+        hovering = true;
+        CLOSE_BUTTON.setScale(sf::Vector2f(1.3f, 1.3f));
+        CLOSE_BUTTON_BG.setFillColor(sf::Color(0, 0, 0, 130));
+        if (leftMousePressed && !leftMouseWasPressed) {
+            this->Close();
+        }
+    } else {
+        CLOSE_BUTTON.setScale(sf::Vector2f(1.0f, 1.0f));
+        CLOSE_BUTTON_BG.setFillColor(sf::Color::Transparent);
+    }
+
+    if (hovering)
+        SF_WINDOW->setMouseCursor(sf::Cursor(sf::Cursor::Type::Hand));
+    else
+        SF_WINDOW->setMouseCursor(sf::Cursor(sf::Cursor::Type::Arrow));
+
+
+    leftMouseWasPressed = leftMousePressed;
+
+    } else {
+        //Window is closed.
+        SF_WINDOW->setMouseCursor(sf::Cursor(sf::Cursor::Type::Arrow));
+    }
+
+
+}
+
+void SFGUI::SFMLGUI::Hide() {
+    HIDE_BUTTON.setRotation(sf::degrees(0));
+    hidden = true;    
+}
+
+void SFGUI::SFMLGUI::Show() {
+    HIDE_BUTTON.setRotation(sf::degrees(180));
+    hidden = false;
+}
+
+void SFGUI::SFMLGUI::Close() {
+    closed = true;
+}
+
+void SFGUI::SFMLGUI::Open() {
+    closed = false;
+}
+
+void SFGUI::SFMLGUI::Setup() {
     for (int i = 0; i < SF_WIDGETS.size(); i++)
     { 
         float xPos = 0, yPos = 0;
@@ -43,7 +215,7 @@ void SFGUI::SFMLGUI::Update()
         if (SF_WIDGETS[i]->w_index == 0) {
             xPos = WIDGET_PADDING_HOR + pos.x;
             yPos = WIDGET_PADDING_VER + pos.y;
-        } else {
+        } else { // All other widgets
             xPos = WIDGET_PADDING_HOR + pos.x;
             yPos = SF_WIDGETS[i-1]->w_pos.y + SF_WIDGETS[i-1]->w_size.size.y + WIDGET_PADDING_VER; 
         }
@@ -51,4 +223,3 @@ void SFGUI::SFMLGUI::Update()
         SF_WIDGETS[i]->setPosition(finalPosition);
     }
 }
-
