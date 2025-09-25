@@ -32,7 +32,10 @@ Each SFWIDGET has a ```sf::Vector2f w_size``` variable that holds the actual tot
 
 So after you've set the size and positions of all the parts that make up your widget, you need to calculate the bounding box. Fortunately, each SFWIDGET class also has a ```sf::FloatRect computeBoundingBox(const std::vector<sf::Transformable*>& parts)``` function.
 
-So at the end of the constructor (or anytime the size of the widget may be altered.) you just need to: ```c++ w_size = computeBoundingBox(t_parts);```
+So at the end of the constructor (or anytime the size of the widget may be altered.) you just need to: 
+```c++ 
+    w_size = computeBoundingBox(t_parts);
+```
 
 ### Positioning the widget in the correct place.
 Every SFWIDGET has a ```sf::Vector2f w_pos```, this is the actual position
@@ -45,14 +48,51 @@ Every SFWIDGET should override setPosition(), and inside this you can set the po
 
 setPosition() is automatically ran every time the gui window is moved.
 
+Below is an example from ```button.hpp```
+```c++
+    // b_background = the actual button object (origin is top left)
+    // centerText is a helper to just put text in the center of a rect.
+    void setPosition(sf::Vector2f pos) override {
+        w_pos = pos;
+        b_background.setPosition(w_pos);
+        centerText(b_text, b_background);
+    }
+```
+
 ### Handling Interaction
 Every SFWIDGET has a ```void SoftUpdate()``` function that gets ran every single frame inside gui.Update()
 
 Here you can handle interaction for the widget, i recommend using the helper functions provided in sfgui-utils.hpp to make your life a little easier.
 
+Below is an example of the interaction logic in ```button.hpp```
+```c++
+    void SoftUpdate() override {
+        hovering = false;
+        clicked = false;
+        if (isMouseInsideRect(*SF_WINDOW, b_background)) {
+            b_background.setFillColor(HOVER_COLOR);
+            hovering = true;
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && !leftMouseWasPressed) {
+                clicked = true;
+            } else if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+                b_background.setFillColor(CLICK_COLOR);
+                b_text.setScale(sf::Vector2f(0.9f, 0.9f));
+            } else {
+                b_text.setScale(sf::Vector2f(1.f, 1.f));
+            }
+        }
+        else
+        {
+            b_background.setFillColor(GUI_PRIMARY_COLOR);
+        }
+    }
+```
+
 
 ### Conclusion
-Other than that, the rest is up to you. The SFWIDGET base class only handles, positioning, size, drawing and managing the widget by assigning each widget created an ID. I Highly recommend taking a look at sf_widget.h before making your own widget.
+Other than that, the rest is up to you. The SFWIDGET base class only handles positioning, size, drawing and managing the widget by assigning each widget created an ID. I highly recommend taking a look at sf_widget.h before making your own widget.
+
+I Recommend taking a look at ```label.hpp```, this is as simple as it gets for a widget.
 
 
 

@@ -16,8 +16,6 @@ class Button : public SFWIDGET
             b_background.setFillColor(GUI_PRIMARY_COLOR);
             b_background.setSize(b_size);
             b_background.setPosition(w_pos);
-            b_background.setOutlineThickness(BORDER_THICKNESS);
-            b_background.setOutlineColor(BORDER_COLOR);
 
             b_text.setFillColor(GUI_TEXT_COLOR);
             b_text.setCharacterSize(CHARACTER_SIZE);
@@ -44,7 +42,7 @@ class Button : public SFWIDGET
 
         void setPosition(sf::Vector2f pos) override {
             w_pos = pos;
-            b_background.setPosition(pos);
+            b_background.setPosition(w_pos);
             centerText(b_text, b_background);
         }
 
