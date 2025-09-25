@@ -25,6 +25,8 @@ An example:
 ```
 For complex widgets this can get quite long, unfortunately there is no base class that different things like sf::Text's and sf::Shape's both inherit from that allow for both drawing and transformations of the object in SFML.
 
+---
+
 ### Size of the widget.
 As well as this, we need to compute the actual bounding box size of your widget, so other widgets around it can also be placed without overlapping.
 
@@ -36,6 +38,8 @@ So at the end of the constructor (or anytime the size of the widget may be alter
 ```c++ 
     w_size = computeBoundingBox(t_parts);
 ```
+
+---
 
 ### Positioning the widget in the correct place.
 Every SFWIDGET has a ```sf::Vector2f w_pos```, this is the actual position
@@ -58,6 +62,8 @@ Below is an example from ```button.hpp```
         centerText(b_text, b_background);
     }
 ```
+
+---
 
 ### Handling Interaction
 Every SFWIDGET has a ```void SoftUpdate()``` function that gets ran every single frame inside gui.Update()
@@ -88,12 +94,13 @@ Below is an example of the interaction logic in ```button.hpp```
     }
 ```
 
+---
 
 ### Conclusion
 Other than that, the rest is up to you. The SFWIDGET base class only handles positioning, size, drawing and managing the widget by assigning each widget created an ID. I highly recommend taking a look at sf_widget.h before making your own widget.
 
 I Recommend taking a look at ```label.hpp```, this is as simple as it gets for a widget.
 
-
+Side note, each SFWIDGET has a pointer to the main sf::RenderWindow under the name SF_WINDOW
 
 
