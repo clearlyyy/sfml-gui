@@ -5,7 +5,7 @@
 ```c++ class Checkbox : public SFWIDGET ```
 
 ### Setup
-In your widgets constructur, you absolutely need to do a few things
+In your widgets constructor, you absolutely need to do a few things
 
 You must call the SFWIDGET constructor prior the the derived classes constructor gets ran, like so
 ```c++
