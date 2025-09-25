@@ -6,16 +6,18 @@
 #include "../sfgui-utils.hpp"
 
 namespace SFGUI {
-class SFBUTTON : public SFWIDGET
+class Button : public SFWIDGET
 {
     public:
-        SFBUTTON() : SFWIDGET("Button"), b_text(TEXT_FONT)
+        Button() : SFWIDGET("Button"), b_text(TEXT_FONT)
         {
             b_size = DEFAULT_BUTTON_SIZE;
             
             b_background.setFillColor(GUI_PRIMARY_COLOR);
             b_background.setSize(b_size);
             b_background.setPosition(w_pos);
+            b_background.setOutlineThickness(BORDER_THICKNESS);
+            b_background.setOutlineColor(BORDER_COLOR);
 
             b_text.setFillColor(GUI_TEXT_COLOR);
             b_text.setCharacterSize(CHARACTER_SIZE);
@@ -27,6 +29,14 @@ class SFBUTTON : public SFWIDGET
             this->t_parts.push_back(&b_text);
             this->d_parts.push_back(&b_background);
             this->d_parts.push_back(&b_text);
+
+            // Make Button size account for text length
+            sf::FloatRect textBounds = b_text.getGlobalBounds();
+
+            float newWidth = textBounds.size.x + WIDGET_PADDING_HOR;
+            if (newWidth > DEFAULT_BUTTON_SIZE.x)
+                b_size = sf::Vector2f(newWidth, b_size.y);
+                b_background.setSize(b_size);
 
             w_size = computeBoundingBox(t_parts);
 
@@ -40,6 +50,14 @@ class SFBUTTON : public SFWIDGET
 
         void setText(std::string text) {
             b_text.setString(text);
+            sf::FloatRect textBounds = b_text.getGlobalBounds();
+            float newWidth = textBounds.size.x + WIDGET_PADDING_HOR;
+            if (newWidth > DEFAULT_BUTTON_SIZE.x) {
+                b_size = sf::Vector2f(newWidth, b_size.y);
+                b_background.setSize(b_size);
+            }
+            w_size = computeBoundingBox(t_parts);
+            
         }
 
         void SoftUpdate() override {

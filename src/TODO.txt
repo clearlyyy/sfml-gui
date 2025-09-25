@@ -1,0 +1,9 @@
+
+
+TODO
+
+Done. Make button widget size automatically account for text size.
+
+make Slider 2,3,4.
+
+Currently the gui hijacks the global cursor state this should be fixed.

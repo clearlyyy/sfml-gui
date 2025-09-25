@@ -1,7 +1,13 @@
+// main.cpp
+// this is just a driver for the gui 
+
 #include <SFML/Graphics.hpp>
 
 #include "sfml-gui/gui.hpp"
 #include "sfml-gui/widgets/button.hpp"
+#include "sfml-gui/widgets/label.hpp"
+#include "sfml-gui/widgets/checkbox.hpp"
+#include "sfml-gui/widgets/slider.hpp"
 
 int main()
 {
@@ -15,18 +21,31 @@ int main()
     sf::Clock clock;
     float fps = 0.f; 
 
+    int ding = 38;
 
+    bool flag = false;
 
     SFGUI::SFMLGUI gui(window);
-    SFGUI::SFBUTTON button;
+    SFGUI::Button button;
     gui.Add(button);
-    SFGUI::SFBUTTON button2;
-    gui.Add(button2);
 
-    SFGUI::SFBUTTON button3;
+    SFGUI::Checkbox checkbox("Toggle Visibility", &flag);
+    gui.Add(checkbox);
+
+    
+    SFGUI::Button button2;
+    gui.Add(button2);
+    
+    SFGUI::Label label("This is a label!");
+    gui.Add(label);
+
+    SFGUI::Button button3;
     gui.Add(button3);
 
-    button.setText("Button 1");
+    SFGUI::Slider<int> slider(&ding, "ding", -100, 100, 200);
+    gui.Add(slider);
+
+    button.setText("Button 1 gdasgjhdfsijghdfsighdsf ");
     button2.setText("Button 2");
     button3.setText("Button 3");
 
@@ -49,7 +68,11 @@ int main()
 
         fpsText.setString("FPS: " + std::to_string(fps));
 
-
+        //if (!flag)
+        //    std::cout << "FLAG: FALSE" << std::endl;
+        //else
+        //    std::cout << "FLAG: TRUE" << std::endl;
+        //std::cout << ding << std::endl;
         window.clear(sf::Color(129, 197, 240));
         gui.Draw();
         window.draw(fpsText);
@@ -57,6 +80,7 @@ int main()
 
         if (button.isClicked()) {
             std::cout << "Clicked Button 1" << std::endl;
+            label.setText("I JUST CHANGED THIS LABEL!!!!!!!");
         }
 
         window.display();

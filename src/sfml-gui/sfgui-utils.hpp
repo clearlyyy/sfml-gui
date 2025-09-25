@@ -38,3 +38,29 @@ inline void scaleFromCenter(sf::RectangleShape& rect, const float scaleFactor)
 
     rect.setPosition(rect.getPosition() - offset);
 }
+
+// for converting from any number to a string with decimal precision.
+template <typename T>
+std::string to_string_prec(T* value, int decimals = 2)
+{
+    int size = 32;
+    std::vector<char> buffer(size);
+    while (true) {
+        int n;
+        if constexpr (std::is_integral_v<T>) {
+            n = snprintf(buffer.data(), buffer.size(), "%lld", static_cast<long long>(*value));
+        } else {
+            n = snprintf(buffer.data(), buffer.size(), "%.*f", decimals, *value);
+        }
+
+        if (n < 0) {
+            throw std::runtime_error("snprintf error!, called from to_string_prec in sfgui-utils.hpp");
+        }
+        if (n < static_cast<int>(buffer.size())) {
+            return std::string(buffer.data(), n);
+        }
+
+        // Buffer too small, increase size.
+        buffer.resize(n + 1);
+    }
+}

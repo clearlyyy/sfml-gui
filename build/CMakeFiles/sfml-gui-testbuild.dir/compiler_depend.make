@@ -295,7 +295,10 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj: C:/Users/clearly/Desktop/Cod
   C:/mingw64/x86_64-w64-mingw32/include/wctype.h \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.hpp \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h \
-  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/button.hpp
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/button.hpp \
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/checkbox.hpp \
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/label.hpp \
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider.hpp
 
 CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj: C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.cpp \
   C:/Libraries/SFML/include/SFML/Config.hpp \
@@ -1124,6 +1127,8 @@ C:/mingw64/include/c++/15.2.0/bits/hash_bytes.h:
 
 C:/mingw64/include/c++/15.2.0/bit:
 
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider.hpp:
+
 C:/mingw64/include/c++/15.2.0/bits/align.h:
 
 C:/mingw64/include/c++/15.2.0/bits/alloc_traits.h:
@@ -1217,6 +1222,8 @@ C:/mingw64/include/c++/15.2.0/bits/locale_facets_nonio.h:
 C:/mingw64/include/c++/15.2.0/bits/locale_facets_nonio.tcc:
 
 C:/mingw64/include/c++/15.2.0/bits/memoryfwd.h:
+
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/label.hpp:
 
 C:/mingw64/include/c++/15.2.0/bits/monostate.h:
 
@@ -1407,6 +1414,8 @@ C:/mingw64/include/c++/15.2.0/string_view:
 C:/mingw64/include/c++/15.2.0/tuple:
 
 C:/mingw64/include/c++/15.2.0/unordered_map:
+
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/checkbox.hpp:
 
 C:/mingw64/include/c++/15.2.0/utility:
 

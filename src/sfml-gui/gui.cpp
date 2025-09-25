@@ -121,6 +121,7 @@ void SFGUI::SFMLGUI::Update()
             HIDE_BUTTON.setPosition(HIDE_BUTTON_BG.getPosition() + sf::Vector2f(HIDE_BUTTON_BG.getSize().x/2, HIDE_BUTTON_BG.getSize().y/2));
             CLOSE_BUTTON_BG.setPosition(sf::Vector2f(BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x, BAR.getPosition().y));
             CLOSE_BUTTON.setPosition(CLOSE_BUTTON_BG.getPosition() + sf::Vector2f(CLOSE_BUTTON_BG.getSize().x/2, CLOSE_BUTTON_BG.getSize().y/2));
+
             if (!hidden) {
                 for (int i = 0; i < SF_WIDGETS.size(); i++)
                 { 
@@ -198,8 +199,6 @@ void SFGUI::SFMLGUI::Update()
         //Window is closed.
         SF_WINDOW->setMouseCursor(sf::Cursor(sf::Cursor::Type::Arrow));
     }
-
-
 
 }
 
