@@ -1,12 +1,18 @@
 
-
 # Creating a widget
 
 ### First your custom widget class must publicly inherit from SFWIDGET.
 ```c++ class Checkbox : public SFWIDGET ```
 
 ### Setup
-In your widgets constructur, you absolutely need to do two things.
+In your widgets constructur, you absolutely need to do a few things
+
+You must call the SFWIDGET constructor prior the the derived classes constructor gets ran, like so
+```c++
+    Button() : SFWIDGET("Button") {
+        // Now do setup in the derived constructor
+    }
+```
 
 Each SFWIDGET contains two lists, ```std::vector<sf::Transformable*> t_parts;``` and ```std::vector<sf::Drawable*> d_parts```
 The two lists just hold pointers to your actual objects.
@@ -43,7 +49,7 @@ So at the end of the constructor (or anytime the size of the widget may be alter
 
 ### Positioning the widget in the correct place.
 Every SFWIDGET has a ```sf::Vector2f w_pos```, this is the actual position
-of the widget relative to the GUI window. A.K.A this is the top left point of the widget.
+of the widget relative to the GUI window. A.K.A this is the top left point of the widget. (automatically determined via w_index)
 
 Now that you know of your w_pos variable, you can then set the position of all the parts that make up your widget relative to w_pos.
 
