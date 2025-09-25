@@ -9,7 +9,7 @@
 In your widgets constructur, you absolutely need to do two things.
 
 Each SFWIDGET contains two lists, ```std::vector<sf::Transformable*> t_parts;``` and ```std::vector<sf::Drawable*> d_parts```
-
+The two lists just hold pointers to your actual objects.
 
 These two lists are used for two different things. d_parts is solely used for drawing the widget. t_parts is used for transformation of the widget.
 
@@ -18,10 +18,10 @@ An example:
 ```c++
     sf::RectangleShape background;
     sf::Text label;
-    t_parts->push_back(background);
-    t_parts->push_back(label);
-    d_parts->push_back(background);
-    d_parts->push_back(label);
+    t_parts->push_back(&background);
+    t_parts->push_back(&label);
+    d_parts->push_back(&background);
+    d_parts->push_back(&label);
 ```
 For complex widgets this can get quite long, unfortunately there is no base class that different things like sf::Text's and sf::Shape's both inherit from that allow for both drawing and transformations of the object in SFML.
 
