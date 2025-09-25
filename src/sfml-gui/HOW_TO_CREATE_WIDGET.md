@@ -1,6 +1,6 @@
 
 
-# Creating a widget in sfml-gui 2 should be easy.
+# Creating a widget
 
 ### First your custom widget class must publicly inherit from SFWIDGET.
 ```c++ class Checkbox : public SFWIDGET ```
@@ -14,14 +14,14 @@ These two lists are used for two different things. d_parts is solely used for dr
 
 For every SFML object that makes up your GUI, (sf::RectangleShape, sf::Text, sf::Circle, sf::Sprite, etc, etc) NEEDS TO BE ADDED TO BOTH THESE LISTS.
 An example:
-    ```c++
-        sf::RectangleShape background;
-        sf::Text label;
-        t_parts->push_back(background);
-        t_parts->push_back(label);
-        d_parts->push_back(background);
-        d_parts->push_back(label);
-    ```
+```c++
+    sf::RectangleShape background;
+    sf::Text label;
+    t_parts->push_back(background);
+    t_parts->push_back(label);
+    d_parts->push_back(background);
+    d_parts->push_back(label);
+```
 For complex widgets this can get quite long, unfortunately there is no base class that different things like sf::Text's and sf::Shape's both inherit from that allow for both drawing and transformations of the object.
 
 ##### Size of the widget.
