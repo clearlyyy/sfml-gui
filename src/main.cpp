@@ -8,6 +8,8 @@
 #include "sfml-gui/widgets/label.hpp"
 #include "sfml-gui/widgets/checkbox.hpp"
 #include "sfml-gui/widgets/slider.hpp"
+#include "sfml-gui/widgets/slider2.hpp"
+#include "sfml-gui/widgets/slider3.hpp"
 
 int main()
 {
@@ -42,8 +44,21 @@ int main()
     SFGUI::Button button3;
     gui.Add(button3);
 
-    SFGUI::Slider<int> slider(&ding, "ding", -100, 100, 200);
+    float rotation = 0;
+    SFGUI::Slider<float> slider(&rotation, "Rotation", 0, 360, 200);
     gui.Add(slider);
+
+    sf::RectangleShape rect;
+    rect.setSize(sf::Vector2f(100, 100));
+    sf::Vector2f rectPos(sf::Vector2f(500, 800));
+
+    SFGUI::Slider2<float> slider2(&rectPos.x, &rectPos.y, "Slider 2 (x,y)", 0, (float)window.getSize().x, 0, (float)window.getSize().y);
+    gui.Add(slider2);
+
+    sf::Color bgColor = sf::Color::Green;
+
+    SFGUI::Slider3<uint8_t> slider3(&bgColor.r, &bgColor.g, &bgColor.b, "Slider 3", 0, 255);
+    gui.Add(slider3);
 
     button.setText("Button 1 gdasgjhdfsijghdfsighdsf ");
     button2.setText("Button 2");
@@ -73,8 +88,12 @@ int main()
         //else
         //    std::cout << "FLAG: TRUE" << std::endl;
         //std::cout << ding << std::endl;
-        window.clear(sf::Color(129, 197, 240));
+        window.clear(bgColor);
+        rect.setPosition(rectPos);
+        rect.setRotation(sf::degrees(rotation));
+        window.draw(rect);
         gui.Draw();
+//        gui.DebugDraw();
         window.draw(fpsText);
         gui.Update();
 

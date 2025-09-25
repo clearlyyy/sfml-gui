@@ -238,3 +238,18 @@ void SFGUI::SFMLGUI::Setup() {
     }
 
 }
+
+void SFGUI::SFMLGUI::DebugDraw() {
+    if (!hidden) {
+        sf::RectangleShape shape;
+        shape.setFillColor(sf::Color::Transparent);
+        shape.setOutlineColor(sf::Color::Green);
+        shape.setOutlineThickness(1);
+        for (SFWIDGET* widget : SF_WIDGETS) {
+            shape.setSize(sf::Vector2f(widget->w_size.size.x, widget->w_size.size.y));
+            shape.setPosition(widget->w_pos);
+            SF_WINDOW->draw(shape);
+        }
+    }
+
+}

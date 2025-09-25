@@ -293,4 +293,7 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj: \
  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sfgui-utils.hpp \
  C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/widgets/label.hpp \
  C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/widgets/checkbox.hpp \
- C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/widgets/slider.hpp
+ C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/widgets/slider.hpp \
+ C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/widgets/slider_template.hpp \
+ C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/widgets/slider2.hpp \
+ C:\Users\clearly\Desktop\Code\sfml-gui\src\sfml-gui/widgets/slider3.hpp

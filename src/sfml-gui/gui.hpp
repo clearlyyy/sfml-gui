@@ -41,6 +41,7 @@ public:
 
     void Add(SFWIDGET& widget);
     void Draw();
+    void DebugDraw();
 
     void Setup();
     void Update();

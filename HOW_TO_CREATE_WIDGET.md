@@ -7,7 +7,7 @@
 ### Setup
 In your widgets constructor, you absolutely need to do a few things
 
-You must call the SFWIDGET constructor prior the the derived classes constructor gets ran, like so
+You must call the SFWIDGET constructor prior to the derived classes constructor gets ran, like so
 ```c++
     Button() : SFWIDGET("Button") {
         // Now do setup in the derived constructor
@@ -36,7 +36,7 @@ For complex widgets this can get quite long, unfortunately there is no base clas
 ### Size of the widget.
 As well as this, we need to compute the actual bounding box size of your widget, so other widgets around it can also be placed without overlapping.
 
-Each SFWIDGET has a ```sf::Vector2f w_size``` variable that holds the actual total size of the widget.
+Each SFWIDGET has a ```sf::FloatRect w_size``` variable that holds the actual total size of the widget.
 
 So after you've set the size and positions of all the parts that make up your widget, you need to calculate the bounding box. Fortunately, each SFWIDGET class also has a ```sf::FloatRect computeBoundingBox(const std::vector<sf::Transformable*>& parts)``` function.
 
@@ -44,6 +44,8 @@ So at the end of the constructor (or anytime the size of the widget may be alter
 ```c++ 
     w_size = computeBoundingBox(t_parts);
 ```
+
+If your curious about the bounding box of your widget, the GUI class has a ```void DebugDraw()``` function that will draw the bounding boxes of all widgets.
 
 ---
 

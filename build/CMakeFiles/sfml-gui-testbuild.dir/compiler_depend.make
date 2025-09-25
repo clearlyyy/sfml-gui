@@ -298,7 +298,10 @@ CMakeFiles/sfml-gui-testbuild.dir/src/main.cpp.obj: C:/Users/clearly/Desktop/Cod
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/button.hpp \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/checkbox.hpp \
   C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/label.hpp \
-  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider.hpp
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider.hpp \
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider2.hpp \
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider3.hpp \
+  C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider_template.hpp
 
 CMakeFiles/sfml-gui-testbuild.dir/src/sfml-gui/gui.cpp.obj: C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/gui.cpp \
   C:/Libraries/SFML/include/SFML/Config.hpp \
@@ -1277,6 +1280,8 @@ C:/mingw64/include/c++/15.2.0/bits/stl_iterator.h:
 
 C:/mingw64/include/c++/15.2.0/bits/stl_iterator_base_types.h:
 
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider3.hpp:
+
 C:/mingw64/include/c++/15.2.0/bits/stl_pair.h:
 
 C:/mingw64/include/c++/15.2.0/bits/stl_raw_storage_iter.h:
@@ -1496,6 +1501,10 @@ C:/mingw64/x86_64-w64-mingw32/include/wctype.h:
 C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.h:
 
 C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/button.hpp:
+
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider2.hpp:
+
+C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/widgets/slider_template.hpp:
 
 C:/Users/clearly/Desktop/Code/sfml-gui/src/sfml-gui/sf_widget.cpp:
 
