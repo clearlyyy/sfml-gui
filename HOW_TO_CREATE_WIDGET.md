@@ -109,7 +109,7 @@ Below is an example of the interaction logic in ```button.hpp```
 ### Conclusion
 Other than that, the rest is up to you. The SFWIDGET base class only handles positioning, size, drawing and managing the widget by assigning each widget created an ID. I highly recommend taking a look at sf_widget.h before making your own widget.
 
-I Recommend taking a look at ```label.hpp```, this is as simple as it gets for a widget.
+Also recommend taking a look at ```label.hpp```, this is as simple as it gets for a widget.
 
 Side note, each SFWIDGET has a pointer to the main sf::RenderWindow under the name SF_WINDOW
 
