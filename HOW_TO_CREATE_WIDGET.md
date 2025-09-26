@@ -77,13 +77,15 @@ Below is an example from ```button.hpp```
 Every SFWIDGET has a ```void SoftUpdate()``` function that gets ran every single frame inside gui.Update()
 
 Here you can handle interaction for the widget, i recommend using the helper functions provided in sfgui-utils.hpp to make your life a little easier.
+**NOTE** If you want to check if the mouse is inside your widget, use ```isMouseInsideRect```.
+Each SFWIDGET has a pointer to the GUI Background Rect, under the name ```guiRef```, if we pass guiRef to isMouseInsideRect, we can make sure we aren't interacting with parts of the widget that are outside the GUI Window (incase the gui is resized too small).
 
 Below is an example of the interaction logic in ```button.hpp```
 ```c++
     void SoftUpdate() override {
         hovering = false;
         clicked = false;
-        if (isMouseInsideRect(*SF_WINDOW, b_background)) {
+        if (isMouseInsideRect(*SF_WINDOW, b_background, guiRef)) {
             b_background.setFillColor(HOVER_COLOR);
             hovering = true;
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && !leftMouseWasPressed) {
