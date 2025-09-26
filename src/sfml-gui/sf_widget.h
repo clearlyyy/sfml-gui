@@ -34,6 +34,8 @@ class SFWIDGET {
 
         virtual void setWindow(sf::RenderWindow* window);
 
+        void provideGUIBounds(sf::RectangleShape *gui_size);
+
         int w_index;
         sf::FloatRect w_size;
         sf::Vector2f w_pos;
@@ -47,6 +49,7 @@ class SFWIDGET {
     protected:
         sf::FloatRect computeBoundingBox(const std::vector<sf::Transformable*>& parts);
         sf::RenderWindow* SF_WINDOW;
+        sf::RectangleShape *guiRef;
 
         // All SFML components that make up a widget.
         // Two lists are needed to account for text, shape and sprites.

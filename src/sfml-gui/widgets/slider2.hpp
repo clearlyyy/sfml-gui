@@ -70,8 +70,8 @@ class Slider2 : public SFWIDGET
         // This needs to be overriden to pass a pointer of the main window to the slider object.
         void setWindow(sf::RenderWindow* window) override {
             SFWIDGET::setWindow(window);
-            slider.setWindow(window);
-            slider2.setWindow(window);
+            slider.setWindow_and_GuiRef(window, guiRef);
+            slider2.setWindow_and_GuiRef(window, guiRef);
         }
     
     private:

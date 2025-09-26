@@ -39,12 +39,6 @@ class Label : public SFWIDGET {
             w_size = computeBoundingBox(t_parts);
         }
 
-        void SoftUpdate() override {
-            std::cout << w_size.size.x << "," << w_size.size.y << std::endl;
-        }
-
-
-
     private:
         std::string l_text;
         sf::Text label;

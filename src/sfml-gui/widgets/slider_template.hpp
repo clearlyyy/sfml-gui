@@ -36,7 +36,7 @@ class Slider_Template {
             this->updateSliderPickPosition();
 
             // Check for interaction.
-            if (SF_WINDOW && isMouseInsideRect(*SF_WINDOW, bg)) {
+            if (SF_WINDOW && guiRef && isMouseInsideRect(*SF_WINDOW, bg, guiRef)) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                     this->setValue();
                 if (isMouseInsideRect(*SF_WINDOW, slider)) {
@@ -88,10 +88,10 @@ class Slider_Template {
             }
         }
         
-        void setWindow(sf::RenderWindow* window) {
+        void setWindow_and_GuiRef(sf::RenderWindow* window, sf::RectangleShape* gui_ref) {
             SF_WINDOW = window;
+            guiRef = gui_ref;
         }
-
     private:
 
         void SetupSlider()
@@ -156,6 +156,8 @@ class Slider_Template {
         float width;
         T min_val;
         T max_val;
+
+        sf::RectangleShape *guiRef;
 
         // Interaction Logic
         bool hovering = false;

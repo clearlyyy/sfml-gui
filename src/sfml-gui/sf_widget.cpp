@@ -86,5 +86,10 @@ void SFGUI::SFWIDGET::setPosition(sf::Vector2f pos)
     std::cout << "Updated Position" << w_pos.x << "," << w_pos.y << std::endl;
 }
 
+void SFGUI::SFWIDGET::provideGUIBounds(sf::RectangleShape *gui_size)
+{
+    guiRef = gui_size;
+}
+
 // Definition of the static counter
 uint8_t SFGUI::SFWIDGET::counter = 0;

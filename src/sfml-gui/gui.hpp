@@ -16,6 +16,7 @@ namespace SFGUI {
 // THINGS ARE NOT GUARANTEED TO LOOK NICE IF CHANGING THESE SETTINGS
 inline constexpr uint16_t     DEFAULT_GUI_SIZE_X   = 400;
 inline constexpr uint16_t     DEFAULT_GUI_SIZE_Y   = 300;
+inline constexpr sf::Vector2f MINIMUM_GUI_SIZE     = sf::Vector2f(50, 50);
 inline constexpr int          DEFAULT_BAR_HEIGHT   = 24;
 inline constexpr sf::Vector2f DEFAULT_GUI_POSITION = sf::Vector2f(100, 300);
 inline constexpr sf::Color    GUI_BACKGROUND_COLOR = sf::Color(46, 52, 64, 150);
@@ -33,7 +34,6 @@ inline constexpr float        CHECKBOX_SIZE        = 20;
 inline constexpr float        SLIDER_PICK_WIDTH    = 15;
 inline constexpr float        RESIZE_RECT_SIZE     = 24;
 inline constexpr float        RESIZE_BOUNDS_SIZE   = 36;
-inline constexpr sf::Vector2f MINIMUM_GUI_SIZE     = sf::Vector2f(50, 50);
 
 extern sf::Font TEXT_FONT;
 

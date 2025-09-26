@@ -40,7 +40,8 @@ int main()
     
     SFGUI::Label label("This is a label!");
     gui.Add(label);
-
+    SFGUI::Label frametime("This is a label!");
+    gui.Add(frametime);
     SFGUI::Button button3;
     gui.Add(button3);
 
@@ -82,7 +83,8 @@ int main()
         fps = 1.f / dt;
 
         fpsText.setString("FPS: " + std::to_string(fps));
-
+        label.setText("FPS: " + std::to_string(fps));
+        frametime.setText("Frametime: " + std::to_string(dt/1000) + "ms");
         //if (!flag)
         //    std::cout << "FLAG: FALSE" << std::endl;
         //else
@@ -94,7 +96,7 @@ int main()
         if (flag)
             window.draw(rect);
         gui.Draw();
-//        gui.DebugDraw();
+        //gui.DebugDraw();
         window.draw(fpsText);
         gui.Update();
 

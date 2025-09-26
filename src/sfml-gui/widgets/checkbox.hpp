@@ -70,7 +70,7 @@ class Checkbox : public SFWIDGET {
             hovering = false;
             clicked = false;
 
-            if (isMouseInsideRect(*SF_WINDOW, c_background)) {
+            if (isMouseInsideRect(*SF_WINDOW, c_background, guiRef)) {
                 c_background.setFillColor(HOVER_COLOR);
                 hovering = true;
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && !leftMouseWasPressed) {

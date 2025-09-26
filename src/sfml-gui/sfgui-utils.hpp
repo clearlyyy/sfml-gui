@@ -15,11 +15,22 @@ inline void centerText(sf::Text& text, const sf::RectangleShape& rect) {
     text.setPosition(rect.getPosition() + rect.getSize() / 2.0f);
 }
 
+// Check if mouse is inside rect.
 inline bool isMouseInsideRect(sf::RenderWindow& window, const sf::RectangleShape& rect)
 {
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     sf::FloatRect bounds = rect.getGlobalBounds();
     return (bounds.contains(static_cast<sf::Vector2f>(mousePos)));
+}
+// Check if mouse is inside rect accounting for the GUI size (Making sure we cant interact with widgets that are being masked by the GUI)
+inline bool isMouseInsideRect(sf::RenderWindow& window, const sf::RectangleShape& rect, const sf::RectangleShape *gui_window)
+{
+    if (isMouseInsideRect(window, *gui_window)) {
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::FloatRect bounds = rect.getGlobalBounds();
+        return (bounds.contains(static_cast<sf::Vector2f>(mousePos)));
+    }
+    return false;
 }
 
 inline sf::Color Darken(sf::Shape &shape)

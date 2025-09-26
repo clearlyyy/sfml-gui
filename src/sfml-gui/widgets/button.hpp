@@ -61,7 +61,7 @@ class Button : public SFWIDGET
         void SoftUpdate() override {
             hovering = false;
             clicked = false;
-            if (isMouseInsideRect(*SF_WINDOW, b_background)) {
+            if (isMouseInsideRect(*SF_WINDOW, b_background, guiRef)) {
                 b_background.setFillColor(HOVER_COLOR);
                 hovering = true;
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && !leftMouseWasPressed) {

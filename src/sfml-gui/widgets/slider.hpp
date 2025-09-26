@@ -43,10 +43,10 @@ class Slider : public SFWIDGET
             slider.setDecimalPrecision(decimals);
         }
         
-        // This needs to be overriden to pass a pointer to the main window to the slider object.
+        // This needs to be overriden to pass a pointer to the main window to the slider template object.
         void setWindow(sf::RenderWindow* window) override {
             SFWIDGET::setWindow(window);
-            slider.setWindow(window);
+            slider.setWindow_and_GuiRef(window, guiRef);
         }
     
     private:

@@ -10,6 +10,8 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window) : pos(DEFAULT_GUI_POSITION), d
                                                     WIN_TEXT(TEXT_FONT, "sfml-gui", CHARACTER_SIZE)
 {
 
+    // This is a cluster fuck of ui programming but it works
+    
     SF_WINDOW = &window;
 
     // Load a font once globally
@@ -99,6 +101,7 @@ void SFGUI::SFMLGUI::Draw()
             } 
             glDisable(GL_SCISSOR_TEST);
             //                                                                                  //
+            SF_WINDOW->draw(RESIZE_RECT);
         }
         SF_WINDOW->draw(BAR);
         {
@@ -111,7 +114,6 @@ void SFGUI::SFMLGUI::Draw()
         SF_WINDOW->draw(CLOSE_BUTTON);
         SF_WINDOW->draw(HIDE_BUTTON_BG);
         SF_WINDOW->draw(HIDE_BUTTON);
-        SF_WINDOW->draw(RESIZE_RECT);
     }
 }
 
@@ -119,7 +121,6 @@ void SFGUI::SFMLGUI::Add(SFWIDGET& widget)
 {
     SF_WIDGETS.push_back(&widget);
 }
-
 
 // TODO: THIS FUNCTION GLOBALLY HIJACKS THE MOUSE CURSOR STATE, FIX!
 void SFGUI::SFMLGUI::Update()
@@ -164,8 +165,7 @@ void SFGUI::SFMLGUI::Update()
             BAR.setSize(sf::Vector2f(BG.getSize().x, DEFAULT_BAR_HEIGHT));
             HIDE_BUTTON_BG.setPosition(BAR.getPosition());
             HIDE_BUTTON.setPosition(HIDE_BUTTON_BG.getPosition() + sf::Vector2f(HIDE_BUTTON_BG.getSize().x/2, HIDE_BUTTON_BG.getSize().y/2));
-            CLOSE_BUTTON_BG.setPosition(sf::Vector2f(BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x, BAR.getPosition().y));
-            CLOSE_BUTTON.setPosition(CLOSE_BUTTON_BG.getPosition() + sf::Vector2f(CLOSE_BUTTON_BG.getSize().x/2, CLOSE_BUTTON_BG.getSize().y/2));
+            CLOSE_BUTTON_BG.setPosition(sf::Vector2f(BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x, BAR.getPosition().y)); CLOSE_BUTTON.setPosition(CLOSE_BUTTON_BG.getPosition() + sf::Vector2f(CLOSE_BUTTON_BG.getSize().x/2, CLOSE_BUTTON_BG.getSize().y/2));
             RESIZE_RECT.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x - RESIZE_RECT_SIZE, BG.getPosition().y + BG.getSize().y - RESIZE_RECT_SIZE));
             RESIZE_AREA.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x, BG.getPosition().y + BG.getSize().y));
         }
@@ -295,10 +295,10 @@ void SFGUI::SFMLGUI::Setup() {
             yPos = SF_WIDGETS[i-1]->w_pos.y + SF_WIDGETS[i-1]->w_size.size.y + WIDGET_PADDING_VER; 
         }
         sf::Vector2f finalPosition = sf::Vector2f(xPos, yPos);
+        SF_WIDGETS[i]->provideGUIBounds(&BG);
         SF_WIDGETS[i]->setPosition(finalPosition);
         SF_WIDGETS[i]->setWindow(SF_WINDOW);
     }
-
 }
 
 void SFGUI::SFMLGUI::DebugDraw() {
