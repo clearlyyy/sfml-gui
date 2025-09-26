@@ -17,6 +17,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     "C:/Libraries/SFML/lib/libsfml-graphics.a"
     "C:/Libraries/SFML/lib/libsfml-window.a"
     "C:/Libraries/SFML/lib/libsfml-system.a"
+    opengl32
 )
 
 # Copy DLLs to build folder

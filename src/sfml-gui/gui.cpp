@@ -1,5 +1,6 @@
 #include "gui.hpp"
 #include "sfgui-utils.hpp"
+#include <SFML/OpenGL.hpp>
 
 sf::Font SFGUI::TEXT_FONT; 
 
@@ -56,6 +57,18 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window) : pos(DEFAULT_GUI_POSITION), d
     if (!hidden)
         HIDE_BUTTON.setRotation(sf::degrees(180));
     
+    // Resize area
+    if (!RESIZE_TEXTURE.loadFromFile("resize_tex.png"))
+        std::cout << "Failed to load RESIZE_TEXTURE" << std::endl;
+    RESIZE_RECT.setSize(sf::Vector2f(RESIZE_RECT_SIZE, RESIZE_RECT_SIZE));
+    RESIZE_RECT.setTexture(&RESIZE_TEXTURE);
+    RESIZE_RECT.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x - RESIZE_RECT_SIZE, BG.getPosition().y + BG.getSize().y - RESIZE_RECT_SIZE));
+    RESIZE_AREA.setSize(sf::Vector2f(RESIZE_BOUNDS_SIZE, RESIZE_BOUNDS_SIZE));
+    RESIZE_AREA.setOrigin(sf::Vector2f(RESIZE_AREA.getSize().x/2.f, RESIZE_AREA.getSize().y/2.f));
+    RESIZE_AREA.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x, BG.getPosition().y + BG.getSize().y));
+
+    
+
     this->setWindowTitle("SFML-GUI");
     this->Update();
 }
@@ -76,16 +89,29 @@ void SFGUI::SFMLGUI::Draw()
     if (!closed) {
         if (!hidden) {
             SF_WINDOW->draw(BG);
+            // SCISSOR TEST for masking widgets, keeping them from overflowing outside the gui. //
+            sf::Vector2i pos = static_cast<sf::Vector2i>(BG.getPosition());
+            sf::Vector2i size = static_cast<sf::Vector2i>(BG.getSize());
+            glEnable(GL_SCISSOR_TEST);
+            glScissor(pos.x, SF_WINDOW->getSize().y - (pos.y + size.y), size.x, size.y);
             for (SFWIDGET* widget : SF_WIDGETS) {
                 widget->Draw(*SF_WINDOW);
             } 
+            glDisable(GL_SCISSOR_TEST);
+            //                                                                                  //
         }
         SF_WINDOW->draw(BAR);
-        SF_WINDOW->draw(WIN_TEXT);
+        {
+            glEnable(GL_SCISSOR_TEST);
+            glScissor(BAR.getPosition().x, SF_WINDOW->getSize().y - (BAR.getPosition().y + BAR.getSize().y), CLOSE_BUTTON_BG.getPosition().x - BAR.getPosition().x, BAR.getPosition().y);
+            SF_WINDOW->draw(WIN_TEXT);
+            glDisable(GL_SCISSOR_TEST);
+        }
         SF_WINDOW->draw(CLOSE_BUTTON_BG);
         SF_WINDOW->draw(CLOSE_BUTTON);
         SF_WINDOW->draw(HIDE_BUTTON_BG);
         SF_WINDOW->draw(HIDE_BUTTON);
+        SF_WINDOW->draw(RESIZE_RECT);
     }
 }
 
@@ -102,7 +128,30 @@ void SFGUI::SFMLGUI::Update()
     if (!closed) {
     sf::Vector2i mousePosWindow = sf::Mouse::getPosition(*SF_WINDOW);
     sf::Vector2f mousePos = static_cast<sf::Vector2f>(mousePosWindow);
+    bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    bool hovering = false;
     cursorToUse = sf::Cursor::Type::Arrow;
+
+    // Resizing
+    if (isMouseInsideRect(*SF_WINDOW, RESIZE_AREA)) {
+        cursorToUse = sf::Cursor::Type::SizeBottomRight;
+        if (leftMousePressed) {
+            resizing = true;
+
+            float newWidth  = mousePos.x - BG.getPosition().x;
+            float newHeight = mousePos.y - BG.getPosition().y;
+            if (newWidth  < MINIMUM_GUI_SIZE.x) newWidth  = MINIMUM_GUI_SIZE.x;
+            if (newHeight < MINIMUM_GUI_SIZE.y) newHeight = MINIMUM_GUI_SIZE.y;
+
+            BG.setSize(sf::Vector2f(
+                newWidth,
+                newHeight
+            )); 
+           
+        } else {
+            resizing = false;
+        }
+    } 
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 
@@ -111,7 +160,17 @@ void SFGUI::SFMLGUI::Update()
             dragOffset = mousePos - pos; 
         }
 
-        if (dragging) {
+        if (resizing) {
+            BAR.setSize(sf::Vector2f(BG.getSize().x, DEFAULT_BAR_HEIGHT));
+            HIDE_BUTTON_BG.setPosition(BAR.getPosition());
+            HIDE_BUTTON.setPosition(HIDE_BUTTON_BG.getPosition() + sf::Vector2f(HIDE_BUTTON_BG.getSize().x/2, HIDE_BUTTON_BG.getSize().y/2));
+            CLOSE_BUTTON_BG.setPosition(sf::Vector2f(BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x, BAR.getPosition().y));
+            CLOSE_BUTTON.setPosition(CLOSE_BUTTON_BG.getPosition() + sf::Vector2f(CLOSE_BUTTON_BG.getSize().x/2, CLOSE_BUTTON_BG.getSize().y/2));
+            RESIZE_RECT.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x - RESIZE_RECT_SIZE, BG.getPosition().y + BG.getSize().y - RESIZE_RECT_SIZE));
+            RESIZE_AREA.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x, BG.getPosition().y + BG.getSize().y));
+        }
+
+        if (dragging && ~resizing) {
             pos = mousePos - dragOffset;
             // Set Position of GUI Window Elements
             BG.setPosition(pos);
@@ -121,6 +180,8 @@ void SFGUI::SFMLGUI::Update()
             HIDE_BUTTON.setPosition(HIDE_BUTTON_BG.getPosition() + sf::Vector2f(HIDE_BUTTON_BG.getSize().x/2, HIDE_BUTTON_BG.getSize().y/2));
             CLOSE_BUTTON_BG.setPosition(sf::Vector2f(BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x, BAR.getPosition().y));
             CLOSE_BUTTON.setPosition(CLOSE_BUTTON_BG.getPosition() + sf::Vector2f(CLOSE_BUTTON_BG.getSize().x/2, CLOSE_BUTTON_BG.getSize().y/2));
+            RESIZE_RECT.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x - RESIZE_RECT_SIZE, BG.getPosition().y + BG.getSize().y - RESIZE_RECT_SIZE));
+            RESIZE_AREA.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x, BG.getPosition().y + BG.getSize().y));
 
             if (!hidden) {
                 for (int i = 0; i < SF_WIDGETS.size(); i++)
@@ -144,8 +205,7 @@ void SFGUI::SFMLGUI::Update()
         dragging = false;
     }
 
-    bool leftMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
-    bool hovering = false;
+
 
     // Check if hide button is pressed.
     if (isMouseInsideRect(*SF_WINDOW, HIDE_BUTTON_BG)) {
@@ -177,11 +237,12 @@ void SFGUI::SFMLGUI::Update()
     }
 
     leftMouseWasPressed = leftMousePressed;
-    
+
     // Make sure each widget in the gui gets SoftUpdated.
 
     for (SFWIDGET* widget : SF_WIDGETS) {
-        widget->SoftUpdate();
+        if (!resizing)
+            widget->SoftUpdate();
 
         if (widget->hovering) {
             cursorToUse = sf::Cursor::Type::Hand;
@@ -190,6 +251,7 @@ void SFGUI::SFMLGUI::Update()
     if (hovering) {
         cursorToUse = sf::Cursor::Type::Hand;
     }
+
 
 
     SF_WINDOW->setMouseCursor(sf::Cursor(cursorToUse));

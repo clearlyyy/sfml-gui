@@ -31,7 +31,9 @@ inline constexpr sf::Color    HOVER_COLOR          = sf::Color(GUI_PRIMARY_COLOR
 inline constexpr sf::Color    CLICK_COLOR          = sf::Color(GUI_PRIMARY_COLOR.r+20, GUI_PRIMARY_COLOR.g+20, GUI_PRIMARY_COLOR.b+20);
 inline constexpr float        CHECKBOX_SIZE        = 20;
 inline constexpr float        SLIDER_PICK_WIDTH    = 15;
-
+inline constexpr float        RESIZE_RECT_SIZE     = 24;
+inline constexpr float        RESIZE_BOUNDS_SIZE   = 36;
+inline constexpr sf::Vector2f MINIMUM_GUI_SIZE     = sf::Vector2f(50, 50);
 
 extern sf::Font TEXT_FONT;
 
@@ -68,9 +70,17 @@ private:
     sf::RectangleShape HIDE_BUTTON_BG;
     sf::Texture CLOSE_TEXTURE;
     sf::Texture HIDE_TEXTURE;
+
+    sf::RectangleShape RESIZE_AREA;
+    sf::RectangleShape RESIZE_RECT;
+    sf::Texture RESIZE_TEXTURE;
+
+    sf::IntRect guiRect;
+
     //////////////////////////////
 
     bool dragging;
+    bool resizing;
     sf::Vector2f dragOffset;
     bool hidden = false;
     bool closed = false;

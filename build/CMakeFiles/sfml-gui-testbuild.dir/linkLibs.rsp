@@ -1,1 +1,1 @@
- "C:/Libraries/SFML/lib/libsfml-graphics.a" "C:/Libraries/SFML/lib/libsfml-window.a" "C:/Libraries/SFML/lib/libsfml-system.a" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
+ "C:/Libraries/SFML/lib/libsfml-graphics.a" "C:/Libraries/SFML/lib/libsfml-window.a" "C:/Libraries/SFML/lib/libsfml-system.a" -lopengl32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

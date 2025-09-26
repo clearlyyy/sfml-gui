@@ -75,7 +75,7 @@ class Slider3 : public SFWIDGET
             slider3.setDecimalPrecision(decimals);
         }
         
-        // This needs to be overriden to pass a pointer to the main window to the slider object.
+        // This needs to be overriden to pass a pointer of the main window to the slider object.
         void setWindow(sf::RenderWindow* window) override {
             SFWIDGET::setWindow(window);
             slider.setWindow(window);
@@ -101,12 +101,9 @@ class Slider3 : public SFWIDGET
         }
 
     private:
-        T *value;
 
         sf::Text label;
         std::string label_text;
-        T min_val;
-        T max_val;
 
         Slider_Template<T> slider;
         Slider_Template<T> slider2;

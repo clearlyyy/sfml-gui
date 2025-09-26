@@ -25,7 +25,7 @@ int main()
 
     int ding = 38;
 
-    bool flag = false;
+    bool flag = true;
 
     SFGUI::SFMLGUI gui(window);
     SFGUI::Button button;
@@ -91,7 +91,8 @@ int main()
         window.clear(bgColor);
         rect.setPosition(rectPos);
         rect.setRotation(sf::degrees(rotation));
-        window.draw(rect);
+        if (flag)
+            window.draw(rect);
         gui.Draw();
 //        gui.DebugDraw();
         window.draw(fpsText);

@@ -14,21 +14,17 @@ template<typename T>
 class Slider : public SFWIDGET
 {
     public:
-        Slider(T *val, const std::string& text, T min, T max) : SFWIDGET("Slider"), value(val), label(TEXT_FONT),
+        Slider(T *val, const std::string& text, T min, T max) : SFWIDGET("Slider"), label(TEXT_FONT),
             slider(val, text, min, max, DEFAULT_BUTTON_SIZE.x)
         {
             label_text = text;
-            min_val = min;
-            max_val = max;
             this->SetupSlider();
         }
 
-        Slider(T *val, const std::string& text, T min, T max, float slider_width) : SFWIDGET("Slider"), value(val), label(TEXT_FONT),
+        Slider(T *val, const std::string& text, T min, T max, float slider_width) : SFWIDGET("Slider"), label(TEXT_FONT),
             slider(val, text, min, max, slider_width)
         {
             label_text = text;
-            min_val = min;
-            max_val = max;
             this->SetupSlider();
         }
 
@@ -70,12 +66,9 @@ class Slider : public SFWIDGET
         }
 
     private:
-        T *value;
 
         sf::Text label;
         std::string label_text;
-        T min_val;
-        T max_val;
 
         Slider_Template<T> slider;
 };
