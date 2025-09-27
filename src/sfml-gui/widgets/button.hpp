@@ -9,7 +9,7 @@ namespace SFGUI {
 class Button : public SFWIDGET
 {
     public:
-        Button() : SFWIDGET("Button"), b_text(TEXT_FONT)
+        Button(std::string text) : SFWIDGET("Button"), b_text(TEXT_FONT)
         {
             b_size = DEFAULT_BUTTON_SIZE;
             
@@ -20,7 +20,7 @@ class Button : public SFWIDGET
             b_text.setFillColor(GUI_TEXT_COLOR);
             b_text.setCharacterSize(CHARACTER_SIZE);
             sf::FloatRect bounds = b_text.getLocalBounds();
-            b_text.setString("Hello World");
+            b_text.setString(text);
             centerText(b_text, b_background);
 
             this->t_parts.push_back(&b_background);

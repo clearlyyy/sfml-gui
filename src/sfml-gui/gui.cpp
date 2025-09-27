@@ -6,13 +6,14 @@ sf::Font SFGUI::TEXT_FONT;
 
 // Constructor
 // This initializes the GUI Window, Placing things like the BG, BAR, Hide button, close button, and title in the correct place.
-SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window) : pos(DEFAULT_GUI_POSITION), dragging(false),
+SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window, std::string window_title) : pos(DEFAULT_GUI_POSITION), dragging(false),
                                                     WIN_TEXT(TEXT_FONT, "sfml-gui", CHARACTER_SIZE)
 {
 
     // This is a cluster fuck of ui programming but it works
     
     SF_WINDOW = &window;
+    WIN_TITLE = window_title;
 
     // Load a font once globally
     if (!SFGUI::TEXT_FONT.openFromFile("Poppins-Medium.ttf")) {
@@ -70,8 +71,7 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window) : pos(DEFAULT_GUI_POSITION), d
     RESIZE_AREA.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x, BG.getPosition().y + BG.getSize().y));
 
     
-
-    this->setWindowTitle("SFML-GUI");
+    this->setWindowTitle(WIN_TITLE);
     this->Update();
 }
 
@@ -120,6 +120,7 @@ void SFGUI::SFMLGUI::Draw()
 void SFGUI::SFMLGUI::Add(SFWIDGET& widget)
 {
     SF_WIDGETS.push_back(&widget);
+    this->Setup();
 }
 
 // TODO: THIS FUNCTION GLOBALLY HIJACKS THE MOUSE CURSOR STATE, FIX!
@@ -173,9 +174,9 @@ void SFGUI::SFMLGUI::Update()
         if (dragging && ~resizing) {
             pos = mousePos - dragOffset;
             // Set Position of GUI Window Elements
+            this->setWindowTitle(WIN_TITLE);
             BG.setPosition(pos);
             BAR.setPosition(sf::Vector2f(pos.x, pos.y - DEFAULT_BAR_HEIGHT));
-            this->setWindowTitle(WIN_TITLE);
             HIDE_BUTTON_BG.setPosition(BAR.getPosition());
             HIDE_BUTTON.setPosition(HIDE_BUTTON_BG.getPosition() + sf::Vector2f(HIDE_BUTTON_BG.getSize().x/2, HIDE_BUTTON_BG.getSize().y/2));
             CLOSE_BUTTON_BG.setPosition(sf::Vector2f(BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x, BAR.getPosition().y));
@@ -260,6 +261,14 @@ void SFGUI::SFMLGUI::Update()
     } else {
         //Window is closed.
         SF_WINDOW->setMouseCursor(sf::Cursor(sf::Cursor::Type::Arrow));
+    }
+
+    // Check if any parts of the gui need a total resize.
+    for (SFWIDGET* widget : SF_WIDGETS) {
+        if (widget->needsCompleteResize) {
+            this->Setup();
+            widget->needsCompleteResize = false;
+        }
     }
 
 }

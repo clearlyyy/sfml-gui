@@ -1,14 +1,12 @@
 // SFML-GUI 2.0
-// - Clearly
 // Fast, Easy to use GUI for SFML Projects
+// - Clearly
 
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <cstdint>
 #include <vector>
 #include "sf_widget.h"
-
-
 
 namespace SFGUI {
 
@@ -22,7 +20,8 @@ inline constexpr sf::Vector2f DEFAULT_GUI_POSITION = sf::Vector2f(100, 300);
 inline constexpr sf::Color    GUI_BACKGROUND_COLOR = sf::Color(46, 52, 64, 150);
 inline constexpr sf::Color    GUI_PRIMARY_COLOR    = sf::Color(76, 86, 106);
 inline constexpr sf::Color    GUI_TEXT_COLOR       = sf::Color::White;
-inline constexpr sf::Vector2f DEFAULT_BUTTON_SIZE  = sf::Vector2f(100, 30);
+inline constexpr sf::Vector2f DEFAULT_BUTTON_SIZE  = sf::Vector2f(100, 20);
+inline constexpr sf::Vector2f DEFAULT_LIST_SIZE    = sf::Vector2f(200, DEFAULT_BUTTON_SIZE.y);
 inline constexpr uint8_t      CHARACTER_SIZE       = 15;
 inline constexpr uint8_t      WIDGET_PADDING_HOR   = 10;
 inline constexpr uint8_t      WIDGET_PADDING_VER   = 5;
@@ -39,24 +38,45 @@ extern sf::Font TEXT_FONT;
 
 class SFMLGUI {
 public:
-    SFMLGUI(sf::RenderWindow& window);
 
+    // Constructor, Peforms setup
+    // Creates and places window decorations;
+    SFMLGUI(sf::RenderWindow& window, std::string window_title);
+    
+    // Adds a SFWIDGET to the SF_WIDGETS list. 
     void Add(SFWIDGET& widget);
+
+    // Draws all window decorations along with all SFWIDGETS.
     void Draw();
+
+    // Draws Widget Bounding Boxes, for debugging widget sizes only.
     void DebugDraw();
 
+    // Setup, After all widgets are added to the GUI, we need to do an initial setup
+    // This should be called after all widgets are added with SFMLGUI::Add();
     void Setup();
+
+    // Update, Runs every frame, handles interactions with window decorations, and calls each 
+    // widgets SoftUpdate() function
     void Update();
 
+    // Hides the GUI, while keeping the window title bar visiable.
     void Hide();
+    // Shows the GUI after its been hidden.
     void Show();
+
+    // Closes the GUI (including the window title bar) nothing is visible.
     void Close();
+    // Opens the GUI after being closed.
     void Open();
 
+    // Sets the GUI Window title, can be any length.
     void setWindowTitle(const std::string& text);
     
+    // List of all the widgets contained in the GUI.
     std::vector<SFWIDGET*> SF_WIDGETS;
 private:
+    // Pointer to the main sf::RenderWindow
     sf::RenderWindow* SF_WINDOW; 
 
     // WINDOW ELEMENTS ///////////

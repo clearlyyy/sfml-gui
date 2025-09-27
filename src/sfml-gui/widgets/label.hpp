@@ -36,7 +36,10 @@ class Label : public SFWIDGET {
 
         void setText(std::string text) {
             label.setString(text);
+            sf::FloatRect old_w_size = w_size;
             w_size = computeBoundingBox(t_parts);
+            if (old_w_size != w_size)
+                needsCompleteResize = true;
         }
 
     private:

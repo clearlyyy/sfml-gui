@@ -80,6 +80,41 @@ sf::FloatRect SFGUI::SFWIDGET::computeBoundingBox(const std::vector<sf::Transfor
     return totalBounds;
 }
 
+sf::FloatRect SFGUI::SFWIDGET::computeBoundingBox(
+    const std::vector<sf::Transformable*>& parts1,
+    const std::vector<sf::Transformable*>& parts2)
+{
+    sf::FloatRect totalBounds;
+    bool first = true;
+
+    auto accumulate = [&](const std::vector<sf::Transformable*>& list) {
+        for (sf::Transformable* d : list) {
+            sf::FloatRect bounds;
+            if (auto* shape = dynamic_cast<sf::Shape*>(d)) {
+                bounds = shape->getGlobalBounds();
+            } else if (auto* text = dynamic_cast<sf::Text*>(d)) {
+                bounds = text->getGlobalBounds();
+            } else if (auto* sprite = dynamic_cast<sf::Sprite*>(d)) {
+                bounds = sprite->getGlobalBounds();
+            } else {
+                continue;
+            }
+
+            if (first) {
+                totalBounds = bounds;
+                first = false;
+            } else {
+                totalBounds = combineRects(totalBounds, bounds);
+            }
+        }
+    };
+
+    accumulate(parts1);
+    accumulate(parts2);
+
+    return totalBounds;
+}
+
 void SFGUI::SFWIDGET::setPosition(sf::Vector2f pos)
 {
     w_pos = pos;

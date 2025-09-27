@@ -8,8 +8,6 @@
 #include <cstdint>
 #include <SFML/Graphics.hpp>
 
-
-
 namespace SFGUI {
 class SFWIDGET {
     public:
@@ -40,14 +38,15 @@ class SFWIDGET {
         sf::FloatRect w_size;
         sf::Vector2f w_pos;
         bool hovering = false;
-    private:
 
-    
+        bool needsCompleteResize = false; 
+    private:
         // A Widgets index (used for positioning)
         static uint8_t counter;
         
     protected:
         sf::FloatRect computeBoundingBox(const std::vector<sf::Transformable*>& parts);
+        sf::FloatRect computeBoundingBox(const std::vector<sf::Transformable*>& parts1, const std::vector<sf::Transformable*>& parts2);
         sf::RenderWindow* SF_WINDOW;
         sf::RectangleShape *guiRef;
 
@@ -58,6 +57,11 @@ class SFWIDGET {
         // This just means that for every widget, we must fill both arrays for every shape, text or sprite we create. 
         std::vector<sf::Transformable*> t_parts;
         std::vector<sf::Drawable*> d_parts;
+
+        // This list is for storing objects that aren't always visible
+        // Like the Listbox for example, we need to recalculate the bounding box
+        // Depending on if its hidden or shown, so we hold the list parts of the listbox in this vector.
+        std::vector<sf::Transformable*> t_parts_sometimes;
 
 };
 }
