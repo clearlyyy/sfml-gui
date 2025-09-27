@@ -23,7 +23,7 @@ int main()
     fpsText.setPosition(sf::Vector2f(30, 30));
     sf::Clock clock;
     float fps = 0.f; 
-
+    // 
     int ding = 38;
 
     bool flag = true;
@@ -81,7 +81,7 @@ int main()
 
         fpsText.setString("FPS: " + std::to_string(fps));
         label.setText("FPS: " + std::to_string(fps));
-        frametime.setText("Frametime: " + std::to_string(dt/1000) + "ms" + "\n dinging all day");
+        frametime.setText("Frametime: " + std::to_string(dt*1000) + "ms"); 
         //if (!flag)
         //    std::cout << "FLAG: FALSE" << std::endl;
         //else
@@ -92,14 +92,14 @@ int main()
         rect.setRotation(sf::degrees(rotation));
         if (flag)
             window.draw(rect);
+        gui.Update();
         gui.Draw();
         //gui.DebugDraw();
         window.draw(fpsText);
-        gui.Update();
 
         if (button.isClicked()) {
             std::cout << "Clicked Button 1" << std::endl;
-            label.setText("I JUST CHANGED THIS LABEL!!!!!!!");
+            rect.setFillColor(sf::Color::Green);
         }
 
         window.display();

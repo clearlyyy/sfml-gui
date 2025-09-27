@@ -12,7 +12,6 @@ class Listbox : public SFWIDGET {
         Listbox(std::string label, int* current_item, std::string items[], size_t count) :  SFWIDGET("Listbox"), label_text(TEXT_FONT, label, CHARACTER_SIZE),
             currently_chosen_text(TEXT_FONT, "testing", CHARACTER_SIZE)         
         {
-
             selected_item = current_item;
 
             for (int i = 0; i < count; i++) {
@@ -36,12 +35,6 @@ class Listbox : public SFWIDGET {
             show_bg.setOutlineColor(BORDER_COLOR);
             show_bg.setOutlineThickness(BORDER_THICKNESS);
 
-
-            //list_bg.setSize(sf::Vector2f(DEFAULT_BUTTON_SIZE.x + show_bg.getSize().x, text_list.size() * (CHARACTER_SIZE+5)));
-            //list_bg.setFillColor(GUI_BACKGROUND_COLOR);
-            //list_bg.setOutlineColor(BORDER_COLOR);
-            //list_bg.setOutlineThickness(BORDER_THICKNESS);
-
             for (sf::RectangleShape& rect : text_list_bg) {
                 rect.setSize(sf::Vector2f(DEFAULT_LIST_SIZE.x + BORDER_THICKNESS + show_bg.getSize().x, (CHARACTER_SIZE+5)));
                 rect.setFillColor(GUI_BACKGROUND_COLOR);
@@ -54,7 +47,6 @@ class Listbox : public SFWIDGET {
             show_button.setOrigin(sf::Vector2f(show_button.getSize().x/2.f, show_button.getSize().y/2.f));
 
             this->setPosition(w_pos);
-
             
             this->t_parts.push_back(&background);
             this->t_parts.push_back(&label_text);
@@ -70,8 +62,6 @@ class Listbox : public SFWIDGET {
 
             w_size = computeBoundingBox(t_parts);
             
-            //this->t_parts.push_back(&list_bg);
-            //this->d_parts.push_back(&list_bg);
             
             // We are purposfully not putting List components into the d_parts, we override Draw() later.
             for (sf::RectangleShape& rect : text_list_bg) {
@@ -90,7 +80,6 @@ class Listbox : public SFWIDGET {
             show_button.setPosition(show_bg.getPosition() + sf::Vector2f(show_bg.getSize().x/2, show_bg.getSize().y/2)); 
             currently_chosen_text.setPosition(background.getPosition() + sf::Vector2f(WIDGET_PADDING_HOR, 0));
             label_text.setPosition(background.getPosition() + sf::Vector2f(background.getSize().x + show_bg.getSize().x + WIDGET_PADDING_HOR, 0));
-            //list_bg.setPosition(w_pos + sf::Vector2f(0, DEFAULT_BUTTON_SIZE.y));
 
             for (int i = 0; i < text_list.size(); i++) {
                 text_list_bg[i].setPosition(w_pos + sf::Vector2f(0, DEFAULT_LIST_SIZE.y + i * (CHARACTER_SIZE+5)));
@@ -130,6 +119,8 @@ class Listbox : public SFWIDGET {
                             *selected_item = i;
                             currently_chosen_text.setString(list_items[i]);
                             text_list_bg[i].setFillColor(CLICK_COLOR);
+                            is_shown = false;
+                            w_size = computeBoundingBox(t_parts);
                         }
                     }
                     else {
@@ -155,7 +146,7 @@ class Listbox : public SFWIDGET {
 
     private:
 
-        int* selected_item = 0;
+        int*                     selected_item = 0;
         std::vector<std::string> list_items;        
 
 
@@ -168,11 +159,9 @@ class Listbox : public SFWIDGET {
         sf::RectangleShape       show_button;
         sf::Texture              show_texture;
 
-        //sf::RectangleShape       list_bg;
-
         bool                     is_shown = false;
 
-        bool leftMouseWasPressed = false;
+        bool                     leftMouseWasPressed = false;
 
 };
 }
