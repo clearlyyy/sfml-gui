@@ -75,6 +75,8 @@ To learn how to make custom widgets, I've written a guide at [Create your own Wi
 
 ---
 
+If you like this project, check out [sfml-console](https://github.com/clearlyyy/sfml-console), You might like that too.
+
 This project is inspired by dear imgui, i recommend checking it out:
 https://github.com/ocornut/imgui
 
