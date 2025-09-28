@@ -29,9 +29,6 @@ int main() {
     SFGUI::Button button("This is a button");
     SFGUI::Label label ("Here is a label");
 
-    bool flag = true;
-    SFGUI::Checkbox checkbox("Toggle Visbility", &flag);
-
     float rotation = 0;
     SFGUI::Slider<float> slider(&rotation, "Rotation", 0, 360);
 
