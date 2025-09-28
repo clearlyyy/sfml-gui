@@ -63,10 +63,11 @@ int main() {
 ## Using SFML-GUI in your projects
 To use SFML-GUI in your project:
 *   Clone the repository ```git clone https://github.com/clearlyyy/sfml-gui.git ```
-*   Take the ```sfml-gui``` folder, place it somewhere in your codebase. 
+*   Take the ```src/sfml-gui``` folder, place it somewhere in your codebase. 
 *   Now just include ```#include "sfml-gui/gui.hpp"```: 
 *   And for any widget you'd like to use just include it, e.g., ```#include "sfml-gui/widgets/button.hpp"```
-* And your ready to go.
+* Next take the ```src/sfml-gui-assets``` folder and place it in the same directory as your compiled executable.
+* And your ready to go. 
 
 ## Customization
 There are some customization options in ```gui.hpp```, changing these settings dont guarantee the final result to look nice, but you can play around with it and make it fit your needs.

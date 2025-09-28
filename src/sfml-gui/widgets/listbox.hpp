@@ -40,7 +40,7 @@ class Listbox : public SFWIDGET {
                 rect.setFillColor(GUI_BACKGROUND_COLOR);
             }
 
-            if (!show_texture.loadFromFile("hide_tex.png")) 
+            if (!show_texture.loadFromFile("sfml-gui-assets/hide_tex.png")) 
                 std::cout << "Failed to load SHOW_TEXTURE" << std::endl;
             show_button.setTexture(&show_texture);
             show_button.setSize(sf::Vector2f(DEFAULT_LIST_SIZE.y/2.f, DEFAULT_LIST_SIZE.y/2.f));

@@ -27,7 +27,7 @@ class Checkbox : public SFWIDGET {
             c_background.setOutlineThickness(BORDER_THICKNESS);
             c_background.setOutlineColor(BORDER_COLOR);
 
-            if (!check_texture.loadFromFile("check_tex.png"))
+            if (!check_texture.loadFromFile("sfml-gui-assets/check_tex.png"))
                 std::cout << "Failed to load check_texture" << std::endl;
 
             c_checkmark.setTexture(&check_texture);

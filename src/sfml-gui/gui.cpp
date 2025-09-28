@@ -16,7 +16,7 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window, std::string window_title) : po
     WIN_TITLE = window_title;
 
     // Load a font once globally
-    if (!SFGUI::TEXT_FONT.openFromFile("Poppins-Medium.ttf")) {
+    if (!SFGUI::TEXT_FONT.openFromFile("sfml-gui-assets/Poppins-Medium.ttf")) {
         std::cout << "Default Font failed to load :(" << std::endl;
     }
 
@@ -36,9 +36,9 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window, std::string window_title) : po
 
     WIN_TEXT.setFillColor(GUI_TEXT_COLOR);
     
-    if (!CLOSE_TEXTURE.loadFromFile("close_tex.png"))
+    if (!CLOSE_TEXTURE.loadFromFile("sfml-gui-assets/close_tex.png"))
     std::cout << "Failed to load CLOSE_TEXTURE" << std::endl;
-    if (!HIDE_TEXTURE.loadFromFile("hide_tex.png"))
+    if (!HIDE_TEXTURE.loadFromFile("sfml-gui-assets/hide_tex.png"))
     std::cout << "Failed to load HIDE_TEXTURE" << std::endl;
     
     HIDE_BUTTON.setTexture(&HIDE_TEXTURE);
@@ -61,7 +61,7 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow& window, std::string window_title) : po
         HIDE_BUTTON.setRotation(sf::degrees(180));
     
     // Resize area
-    if (!RESIZE_TEXTURE.loadFromFile("resize_tex.png"))
+    if (!RESIZE_TEXTURE.loadFromFile("sfml-gui-assets/resize_tex.png"))
         std::cout << "Failed to load RESIZE_TEXTURE" << std::endl;
     RESIZE_RECT.setSize(sf::Vector2f(RESIZE_RECT_SIZE, RESIZE_RECT_SIZE));
     RESIZE_RECT.setTexture(&RESIZE_TEXTURE);
