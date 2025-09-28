@@ -26,7 +26,6 @@ class Label : public SFWIDGET {
 
             // Compute bounding box.
             w_size = computeBoundingBox(t_parts);
-            
         }
 
         void setPosition(sf::Vector2f pos) override {
@@ -35,8 +34,8 @@ class Label : public SFWIDGET {
         }
 
         void setText(std::string text) {
-            label.setString(text);
             sf::FloatRect old_w_size = w_size;
+            label.setString(text);
             w_size = computeBoundingBox(t_parts);
             if (old_w_size != w_size)
                 needsCompleteResize = true;

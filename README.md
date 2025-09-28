@@ -1,10 +1,10 @@
 
 <h1 align="center">SFML-GUI</h1>
-<h2 align="center"> A Fast Retained-Mode Graphical User Interface Library for SFML 3 written in C++ </h2>
+<h3 align="center"> A Fast Retained-Mode Graphical User Interface Library for SFML 3 written in C++ </h3>
 
 ![DEMO IMAGE](/github-assets/sfml-gui-demo.gif/)
 
-*SFML-GUI 2* I've rewritten the entire library from scratch for SFML 3.0, this new version is much faster and way easier to use. If you'd like to use the original version, I've archived it on a separate branch.
+I've rewritten the entire library from scratch for SFML 3.0, this new version is much faster and way easier to use. If you'd like to use the original version, I've archived it on a separate branch.
 
 ## About the project
 SFML-GUI is a *Retained Mode* GUI, Its fast, extremely simple to use and it just works.
@@ -26,7 +26,6 @@ The Following code showcases how some widgets can be created, and used.
 ```c++
 int main() {
     SFGUI::SFMLGUI gui(window, "SFML-GUI Example");
-
     SFGUI::Button button("This is a button");
     SFGUI::Label label ("Here is a label");
 
@@ -49,15 +48,19 @@ int main() {
     {
         // Main SFML Draw Loop
         gui.Update();
-        gui.Draw();
         if (button.isClicked())
-            std::cout << "Just Clicked this Button!" << std::endl;
+            label.setText("Just clicked that button!"); 
+        gui.Draw();
     }
 }
 ```
 <h2> Output </h2>
 
 ![DEMO GIF](/github-assets/sfml-gui-example.gif/)
+
+<hr></hr>
+
+To learn how to make custom widgets, I've written a guide at (/HOW_TO_CREATE_WIDGET.md/)
 
 This project is inspired by dear imgui, i recommend checking it out:
 https://github.com/ocornut/imgui
