@@ -31,6 +31,10 @@ An example:
 ```
 For complex widgets this can get quite long, unfortunately there is no base class that different things like sf::Text's and sf::Shape's both inherit from that allow for both drawing and transformations of the object in SFML.
 
+There also exists another list named t_parts_sometimes. This is for parts of a widget that are apart of a popup, Like the ListBox Widget. We need a seperate list, because the bounding box of the widget is variable depending on if the dropdown list is visible or not. 
+
+For complex widgets you can always override the Draw() function and do things your own way and avoid these lists. 
+
 ---
 
 ### Size of the widget.
@@ -44,6 +48,8 @@ So at the end of the constructor (or anytime the size of the widget may be alter
 ```c++ 
     w_size = computeBoundingBox(t_parts);
 ```
+
+Each widget also has a ```bool needsCompleteResize```, If your gui's size gets changed, and you believe the GUI should recalculate the positioning of each widget, just set ```needsCompleteResize = true``` this will cause the GUI to recalculate positioning of all widgets. (needsCompleteResize will get set to false in the next frame automatically.)
 
 If your curious about the bounding box of your widget, the GUI class has a ```void DebugDraw()``` function that will draw the bounding boxes of all widgets.
 
@@ -103,6 +109,7 @@ Below is an example of the interaction logic in ```button.hpp```
         }
     }
 ```
+Side note, each SFWIDGET has a pointer to the main sf::RenderWindow under the name SF_WINDOW
 
 ---
 
@@ -111,6 +118,7 @@ Other than that, the rest is up to you. The SFWIDGET base class only handles pos
 
 Also recommend taking a look at ```label.hpp```, this is as simple as it gets for a widget.
 
-Side note, each SFWIDGET has a pointer to the main sf::RenderWindow under the name SF_WINDOW
+If you make a cool widget, make a PR and i might add it. I'm always happy to accept contributions to the project.
+
 
 

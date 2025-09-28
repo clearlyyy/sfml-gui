@@ -4,7 +4,7 @@
 
 ![DEMO IMAGE](/github-assets/sfml-gui-demo.gif/)
 
-I've rewritten the entire library from scratch for SFML 3.0, this new version is much faster and way easier to use. If you'd like to use the original version, I've archived it on a separate branch.
+Note: I've rewritten the entire library from scratch for SFML 3.0, this new version is much faster and way easier to use. If you'd like to use the original version, I've archived it on a separate branch.
 
 ## About the project
 SFML-GUI is a *Retained Mode* GUI, Its fast, extremely simple to use and it just works.
@@ -60,7 +60,7 @@ int main() {
 
 <hr></hr>
 
-To learn how to make custom widgets, I've written a guide at [Create your own widget](/HOW_TO_CREATE_WIDGET.md/)
+To learn how to make custom widgets, I've written a guide at [Create your own Widgets](/HOW_TO_CREATE_WIDGET.md/)
 
 This project is inspired by dear imgui, i recommend checking it out:
 https://github.com/ocornut/imgui
