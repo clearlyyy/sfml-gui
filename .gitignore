@@ -1,0 +1,11 @@
+# Ignore CMake build files
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Ignore build directories
+/build/
+/out/
+/bin/
+/lib/
