@@ -60,7 +60,7 @@ int main() {
 
 <hr></hr>
 
-To learn how to make custom widgets, I've written a guide at [Create your own Widgets](/HOW_TO_CREATE_WIDGET.md/)
+To learn how to make custom widgets, I've written a guide at [Create your own Widgets](/HOW_TO_CREATE_WIDGET.md/) 
 
 This project is inspired by dear imgui, i recommend checking it out:
 https://github.com/ocornut/imgui
