@@ -73,6 +73,8 @@ There are some customization options in ```gui.hpp```, changing these settings d
 
 To learn how to make custom widgets, I've written a guide at [Create your own Widgets](/HOW_TO_CREATE_WIDGET.md/) 
 
+---
+
 This project is inspired by dear imgui, i recommend checking it out:
 https://github.com/ocornut/imgui
 
