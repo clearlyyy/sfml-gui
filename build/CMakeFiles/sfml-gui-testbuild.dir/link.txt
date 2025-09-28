@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\sfml-gui-testbuild.dir/objects.a
-C:\mingw64\bin\ar.exe qc CMakeFiles\sfml-gui-testbuild.dir/objects.a @CMakeFiles\sfml-gui-testbuild.dir\objects1.rsp
-C:\mingw64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\sfml-gui-testbuild.dir/objects.a -Wl,--no-whole-archive -o sfml-gui-testbuild.exe -Wl,--out-implib,libsfml-gui-testbuild.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\sfml-gui-testbuild.dir\linkLibs.rsp
