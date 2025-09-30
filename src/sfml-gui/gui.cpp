@@ -109,7 +109,11 @@ void SFGUI::SFMLGUI::Draw()
         SF_WINDOW->draw(BAR);
         {
             glEnable(GL_SCISSOR_TEST);
-            glScissor(BAR.getPosition().x, SF_WINDOW->getSize().y - (BAR.getPosition().y + BAR.getSize().y), CLOSE_BUTTON_BG.getPosition().x - BAR.getPosition().x, BAR.getPosition().y);
+            GLint scissorX = static_cast<GLint>(BAR.getPosition().x);
+            GLint scissorY = static_cast<GLint>(SF_WINDOW->getSize().y - (BAR.getPosition().y + BAR.getSize().y));
+            GLint scissorWidth = static_cast<GLint>(CLOSE_BUTTON_BG.getPosition().x - BAR.getPosition().x);
+            GLint scissorHeight = static_cast<GLint>(BAR.getSize().y); 
+            glScissor(scissorX, scissorY, scissorWidth, scissorHeight);
             SF_WINDOW->draw(WIN_TEXT);
             glDisable(GL_SCISSOR_TEST);
         }
@@ -208,8 +212,6 @@ void SFGUI::SFMLGUI::Update()
         // Mouse Released
         dragging = false;
     }
-
-
 
     // Check if hide button is pressed.
     if (isMouseInsideRect(*SF_WINDOW, HIDE_BUTTON_BG)) {

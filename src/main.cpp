@@ -71,6 +71,9 @@ int main()
     SFGUI::Slider3<uint8_t> slider3(&bgColor.r, &bgColor.g, &bgColor.b, "Slider 3", 0, 255);
     gui.Add(slider3);
 
+    std::vector<SFGUI::Button> Buttons;
+    Buttons.reserve(100);
+
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent())
@@ -106,6 +109,8 @@ int main()
         if (button.isClicked()) {
             std::cout << "Clicked Button 1" << std::endl;
             rect.setFillColor(sf::Color::Green);
+            Buttons.emplace_back("Im a Button");
+            gui.Add(Buttons.back());
         }
 
         window.display();

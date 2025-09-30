@@ -54,7 +54,6 @@ class InputBox : public SFWIDGET
             w_pos = pos;
             b_background.setPosition(w_pos);
             label.setPosition(b_background.getPosition() + sf::Vector2f(b_background.getSize().x + WIDGET_PADDING_HOR, 0.f));
-            
         }
 
         void setLabel(std::string text) {
