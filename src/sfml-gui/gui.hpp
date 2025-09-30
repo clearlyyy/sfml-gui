@@ -74,7 +74,7 @@ public:
     // Opens the GUI after being closed.
     void Open();
 
-    // Sets the GUI Window title, can be any length.
+    // Set the title of the GUI Window 
     void setWindowTitle(const std::string& text);
     
     // List of all the widgets contained in the GUI.

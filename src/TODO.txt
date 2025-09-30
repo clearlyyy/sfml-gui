@@ -6,6 +6,6 @@ Done. Make button widget size automatically account for text size.
 
 Done. make Slider 2,3
 
-Make ListBoxes
+Done. Make ListBoxes
 
 Currently the gui hijacks the global cursor state this should be fixed.

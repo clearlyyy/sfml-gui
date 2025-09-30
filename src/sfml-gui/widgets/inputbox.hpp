@@ -47,7 +47,6 @@ class InputBox : public SFWIDGET
 
             this->setPosition(w_pos);
 
-            
         }
 
         void setPosition(sf::Vector2f pos) override {
