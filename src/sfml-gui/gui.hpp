@@ -33,6 +33,7 @@ inline constexpr float        CHECKBOX_SIZE        = 20;
 inline constexpr float        SLIDER_PICK_WIDTH    = 15;
 inline constexpr float        RESIZE_RECT_SIZE     = 24;
 inline constexpr float        RESIZE_BOUNDS_SIZE   = 36;
+inline constexpr float        CARET_WIDTH          = 1;
 
 extern sf::Font TEXT_FONT;
 
@@ -59,6 +60,9 @@ public:
     // Update, Runs every frame, handles interactions with window decorations, and calls each 
     // widgets SoftUpdate() function
     void Update();
+
+    // For polling sf::Events.
+    void pollEvents(const sf::Event& e);
 
     // Hides the GUI, while keeping the window title bar visiable.
     void Hide();

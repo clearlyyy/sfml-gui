@@ -105,7 +105,5 @@ class Checkbox : public SFWIDGET {
         // Logic
         bool clicked;
         bool leftMouseWasPressed = false;
-
-
 };
 }

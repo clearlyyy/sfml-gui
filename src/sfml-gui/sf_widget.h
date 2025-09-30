@@ -27,6 +27,9 @@ class SFWIDGET {
         // Soft Update (Only moving the widget.)
         virtual void SoftUpdate();
 
+        // For polling an sf::Event, right now only used for the InputBox Widget
+        virtual void pollEvents(const sf::Event& e);
+
         //Set Position (This should be overridden for each widget.)
         virtual void setPosition(sf::Vector2f pos);
 
@@ -38,6 +41,7 @@ class SFWIDGET {
         sf::FloatRect w_size;
         sf::Vector2f w_pos;
         bool hovering = false;
+        bool hoveringOnText = false;
 
         bool needsCompleteResize = false; 
     private:

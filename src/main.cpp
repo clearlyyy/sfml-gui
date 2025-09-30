@@ -11,6 +11,7 @@
 #include "sfml-gui/widgets/slider2.hpp"
 #include "sfml-gui/widgets/slider3.hpp"
 #include "sfml-gui/widgets/listbox.hpp"
+#include "sfml-gui/widgets/inputbox.hpp"
 
 int main()
 {
@@ -46,6 +47,10 @@ int main()
     SFGUI::Button button3("Button 3");
     gui.Add(button3);
 
+    std::string text = "Hello";
+    SFGUI::InputBox input(&text, "Input Box");
+    gui.Add(input);
+
     float rotation = 0;
     SFGUI::Slider<float> slider(&rotation, "Rotation", 0, 360, 200);
     gui.Add(slider);
@@ -61,7 +66,7 @@ int main()
     SFGUI::Slider2<float> slider2(&rectPos.x, &rectPos.y, "Slider 2 (x,y)", 0, (float)window.getSize().x, 0, (float)window.getSize().y);
     gui.Add(slider2);
 
-    sf::Color bgColor = sf::Color::Green;
+    sf::Color bgColor = sf::Color(79, 193, 255);
 
     SFGUI::Slider3<uint8_t> slider3(&bgColor.r, &bgColor.g, &bgColor.b, "Slider 3", 0, 255);
     gui.Add(slider3);
@@ -72,14 +77,15 @@ int main()
         {
             if (event->is<sf::Event::Closed>())
                 window.close();
+            gui.pollEvents(*event);
         }
 
-        std::cout << items[currentItem] << std::endl;
-
+        //std::cout << items[currentItem] << std::endl;
+        std::cout << text << std::endl;
         float dt = clock.restart().asSeconds();
         fps = 1.f / dt;
 
-        fpsText.setString("FPS: " + std::to_string(fps));
+        //fpsText.setString("FPS: " + std::to_string(fps));
         label.setText("FPS: " + std::to_string(fps));
         frametime.setText("Frametime: " + std::to_string(dt*1000) + "ms"); 
         //if (!flag)

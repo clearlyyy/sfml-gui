@@ -24,7 +24,6 @@ class Listbox : public SFWIDGET {
 
             currently_chosen_text.setString(list_items[*selected_item]);
 
-            
             background.setSize(DEFAULT_LIST_SIZE);
             background.setFillColor(GUI_PRIMARY_COLOR);
             background.setOutlineColor(BORDER_COLOR);

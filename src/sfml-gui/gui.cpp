@@ -94,11 +94,14 @@ void SFGUI::SFMLGUI::Draw()
             // SCISSOR TEST for masking widgets, keeping them from overflowing outside the gui. //
             sf::Vector2i pos = static_cast<sf::Vector2i>(BG.getPosition());
             sf::Vector2i size = static_cast<sf::Vector2i>(BG.getSize());
+            GLint guiPrevScissor[4];
+            glGetIntegerv(GL_SCISSOR_BOX, guiPrevScissor);
             glEnable(GL_SCISSOR_TEST);
             glScissor(pos.x, SF_WINDOW->getSize().y - (pos.y + size.y), size.x, size.y);
             for (SFWIDGET* widget : SF_WIDGETS) {
                 widget->Draw(*SF_WINDOW);
-            } 
+            }
+            glScissor(guiPrevScissor[0], guiPrevScissor[1], guiPrevScissor[2], guiPrevScissor[3]); 
             glDisable(GL_SCISSOR_TEST);
             //                                                                                  //
             SF_WINDOW->draw(RESIZE_RECT);
@@ -248,6 +251,9 @@ void SFGUI::SFMLGUI::Update()
         if (widget->hovering) {
             cursorToUse = sf::Cursor::Type::Hand;
         }
+        if (widget->hoveringOnText) {
+            cursorToUse = sf::Cursor::Type::Text;
+        }
     }
     if (hovering) {
         cursorToUse = sf::Cursor::Type::Hand;
@@ -323,4 +329,11 @@ void SFGUI::SFMLGUI::DebugDraw() {
         }
     }
 
+}
+
+void SFGUI::SFMLGUI::pollEvents(const sf::Event& e)
+{
+    for (SFWIDGET* widget : SF_WIDGETS) {
+        widget->pollEvents(e);
+    }
 }

@@ -53,6 +53,10 @@ void SFGUI::SFWIDGET::setWindow(sf::RenderWindow* window)
     SF_WINDOW = window;
 }
 
+void SFGUI::SFWIDGET::pollEvents(const sf::Event& e) {
+    // Do nothing by default
+}
+
 sf::FloatRect SFGUI::SFWIDGET::computeBoundingBox(const std::vector<sf::Transformable*>& parts) {
     sf::FloatRect totalBounds;
     bool first = true;

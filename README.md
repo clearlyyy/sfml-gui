@@ -17,8 +17,8 @@ It enables fast iterations and quick GUI design, so you can spend more time on y
 
 Currently sfml-gui Supports the following widgets.
 
-Labels | Check Boxes | List Boxes | Sliders | Buttons | 
--------|-------------|------------|---------|---------|
+Labels | Check Boxes | List Boxes | Sliders | Buttons | Input Boxes |
+-------|-------------|------------|---------|---------|-------------|
 
 <h1> Creating a GUI has never been easier! </h1>
 
@@ -43,6 +43,11 @@ int main() {
 
     while (window.isOpen())
     {
+        while (const std::optional event = window.pollEvents())
+        {
+            // Do SFML Event Loop stuff
+            gui.pollEvents(*event);
+        }
         // Main SFML Draw Loop
         gui.Update();
         if (button.isClicked())
