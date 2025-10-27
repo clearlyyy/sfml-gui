@@ -68,6 +68,9 @@ int main()
 
     sf::Color bgColor = sf::Color(79, 193, 255);
 
+    SFGUI::Label label2("Im a label");
+    gui.Add(label2);
+
     SFGUI::Slider3<uint8_t> slider3(&bgColor.r, &bgColor.g, &bgColor.b, "Slider 3", 0, 255);
     gui.Add(slider3);
 
@@ -91,6 +94,7 @@ int main()
         //fpsText.setString("FPS: " + std::to_string(fps));
         label.setText("FPS: " + std::to_string(fps));
         frametime.setText("Frametime: " + std::to_string(dt*1000) + "ms"); 
+        label2.setText(text);
         //if (!flag)
         //    std::cout << "FLAG: FALSE" << std::endl;
         //else
