@@ -19,12 +19,10 @@ public:
 #endif
     "sfml-gui-assets/";
 
-    ResourceManager(fspath path = default_path)
-        : assets_path(path) 
-    {
-        if(assets_path == default_path && !load())
-            throw std::runtime_error("Loading assets failed");
-        //else manual load
+    ResourceManager() = default;
+
+    void set_assets_path(fspath path) {
+        assets_path = path;
     }
 
     [[nodiscard]] bool load() {
@@ -47,7 +45,7 @@ public:
     sf::Texture test_textture, hide_texture, close_texture, resize_texture, check_texture;
 
 private:
-    fspath assets_path;
+    fspath assets_path = default_path;
     bool was_loaded = false;
 };
 
