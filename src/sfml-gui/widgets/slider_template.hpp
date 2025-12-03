@@ -10,7 +10,7 @@ class Slider_Template {
 
     public:
 
-        Slider_Template(T *val, const std::string& text, T min, T max, float slider_Width, sf::RenderWindow* sfml_window) : value(val), num_display(TEXT_FONT)
+        Slider_Template(T *val, const std::string& text, T min, T max, float slider_Width, sf::RenderWindow* sfml_window) : value(val), num_display(res.text_font)
         {
             SF_WINDOW = sfml_window;
             width = slider_Width;
@@ -20,7 +20,7 @@ class Slider_Template {
         }
         
         // Constructor without SF_WINDOW for early initialization
-        Slider_Template(T *val, const std::string& text, T min, T max, float slider_Width) : value(val), num_display(TEXT_FONT)
+        Slider_Template(T *val, const std::string& text, T min, T max, float slider_Width) : value(val), num_display(res.text_font)
         {
             SF_WINDOW = nullptr;
             width = slider_Width;

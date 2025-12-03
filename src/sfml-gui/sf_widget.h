@@ -8,6 +8,8 @@
 #include <cstdint>
 #include <SFML/Graphics.hpp>
 
+#include "res.hpp"
+
 namespace SFGUI {
 class SFWIDGET {
     public:

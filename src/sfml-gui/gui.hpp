@@ -35,7 +35,6 @@ inline constexpr float        RESIZE_RECT_SIZE     = 24;
 inline constexpr float        RESIZE_BOUNDS_SIZE   = 36;
 inline constexpr float        CARET_WIDTH          = 1;
 
-extern sf::Font TEXT_FONT;
 
 class SFMLGUI {
 public:
@@ -92,12 +91,9 @@ private:
     sf::RectangleShape CLOSE_BUTTON_BG;
     sf::RectangleShape HIDE_BUTTON;
     sf::RectangleShape HIDE_BUTTON_BG;
-    sf::Texture CLOSE_TEXTURE;
-    sf::Texture HIDE_TEXTURE;
 
     sf::RectangleShape RESIZE_AREA;
     sf::RectangleShape RESIZE_RECT;
-    sf::Texture RESIZE_TEXTURE;
 
     sf::IntRect guiRect;
 

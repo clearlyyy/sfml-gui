@@ -14,7 +14,7 @@ class Slider2 : public SFWIDGET
     public:
 
         // Constructor where both sliders have same min/max values and default width.
-        Slider2 (T *val, T* val2, const std::string& text, T min, T max) : SFWIDGET("Slider"), label(TEXT_FONT),
+        Slider2 (T *val, T* val2, const std::string& text, T min, T max) : SFWIDGET("Slider"), label(res.text_font),
             slider(val, text, min, max, DEFAULT_BUTTON_SIZE.x),
             slider2(val2, text, min, max, DEFAULT_BUTTON_SIZE.x)
         {
@@ -23,7 +23,7 @@ class Slider2 : public SFWIDGET
         }
 
         // Constructor where both sliders have same min/max values with a defined width.
-        Slider2 (T *val, T* val2, const std::string& text, T min, T max, float slider_width) : SFWIDGET("Slider"), label(TEXT_FONT),
+        Slider2 (T *val, T* val2, const std::string& text, T min, T max, float slider_width) : SFWIDGET("Slider"), label(res.text_font),
             slider(val, text, min, max, slider_width),
             slider2(val2, text, min, max, slider_width)
         {
@@ -32,7 +32,7 @@ class Slider2 : public SFWIDGET
         }
 
         // Constructor where both sliders have different min/max values with a default width.
-        Slider2 (T *val, T* val2, const std::string& text, T min_val1, T max_val1, T min_val2, T max_val2, float slider_width) : SFWIDGET("Slider"), label(TEXT_FONT),
+        Slider2 (T *val, T* val2, const std::string& text, T min_val1, T max_val1, T min_val2, T max_val2, float slider_width) : SFWIDGET("Slider"), label(res.text_font),
             slider(val, text, min_val1, max_val1, slider_width),
             slider2(val2, text, min_val2, max_val2, slider_width)
         {
@@ -41,7 +41,7 @@ class Slider2 : public SFWIDGET
         }
 
         // Constructor where both sliders have different min/max values with a defined width.
-        Slider2 (T *val, T* val2, const std::string& text, T min_val1, T max_val1, T min_val2, T max_val2) : SFWIDGET("Slider"), label(TEXT_FONT),
+        Slider2 (T *val, T* val2, const std::string& text, T min_val1, T max_val1, T min_val2, T max_val2) : SFWIDGET("Slider"), label(res.text_font),
             slider(val, text, min_val1, max_val1, DEFAULT_BUTTON_SIZE.x),
             slider2(val2, text, min_val2, max_val2, DEFAULT_BUTTON_SIZE.x)
         {

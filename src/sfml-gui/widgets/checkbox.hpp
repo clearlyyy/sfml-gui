@@ -9,7 +9,7 @@ namespace SFGUI {
 class Checkbox : public SFWIDGET {
 
     public:
-        Checkbox(const std::string text, bool* condition) : SFWIDGET("Checkbox"), label(TEXT_FONT)
+        Checkbox(const std::string text, bool* condition) : SFWIDGET("Checkbox"), label(res.text_font)
         {
 
             // Checkmark Setup
@@ -27,10 +27,7 @@ class Checkbox : public SFWIDGET {
             c_background.setOutlineThickness(BORDER_THICKNESS);
             c_background.setOutlineColor(BORDER_COLOR);
 
-            if (!check_texture.loadFromFile("sfml-gui-assets/check_tex.png"))
-                std::cout << "Failed to load check_texture" << std::endl;
-
-            c_checkmark.setTexture(&check_texture);
+            c_checkmark.setTexture(&res.check_texture);
             c_checkmark.setSize(sf::Vector2f(CHECKBOX_SIZE - 8, CHECKBOX_SIZE - 8));
             c_checkmark.setOrigin(sf::Vector2f(c_checkmark.getSize().x/2.f, c_checkmark.getSize().y/2.f));
 

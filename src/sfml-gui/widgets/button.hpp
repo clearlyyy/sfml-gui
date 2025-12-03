@@ -9,7 +9,7 @@ namespace SFGUI {
 class Button : public SFWIDGET
 {
     public:
-        Button(std::string text) : SFWIDGET("Button"), b_text(TEXT_FONT)
+        Button(std::string text) : SFWIDGET("Button"), b_text(res.text_font)
         {
             b_size = DEFAULT_BUTTON_SIZE;
             
