@@ -9,7 +9,7 @@ namespace SFGUI {
 class Label : public SFWIDGET {
 
     public:
-        Label(std::string text) : SFWIDGET("Label"), label(TEXT_FONT)
+        Label(std::string text) : SFWIDGET("Label"), label(res.text_font)
         {
             // Label Init
             label.setPosition(w_pos);

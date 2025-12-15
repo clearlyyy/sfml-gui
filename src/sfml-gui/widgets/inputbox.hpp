@@ -10,7 +10,7 @@ namespace SFGUI {
 class InputBox : public SFWIDGET
 {
     public:
-        InputBox(std::string* input, std::string label) : SFWIDGET("Button"), b_text(TEXT_FONT, "", CHARACTER_SIZE), label(TEXT_FONT, "", CHARACTER_SIZE)
+        InputBox(std::string* input, std::string label) : SFWIDGET("Button"), b_text(res.text_font, "", CHARACTER_SIZE), label(res.text_font, "", CHARACTER_SIZE)
         {
             b_size = DEFAULT_BUTTON_SIZE;
 

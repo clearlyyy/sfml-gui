@@ -17,6 +17,7 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode({1920, 1080}), "SFML works!");
 
+    // SFGUI::res.set_assets_path("sfml-gui-assets-test-copy");
     SFGUI::SFMLGUI gui(window, "SFML-GUI Example");
     SFGUI::Button button("This is a button");
     SFGUI::Label label ("Here is a label");

@@ -2,24 +2,20 @@
 #include "sfgui-utils.hpp"
 #include <SFML/OpenGL.hpp>
 
-sf::Font SFGUI::TEXT_FONT;
-
 // Constructor
 // This initializes the GUI Window, Placing things like the BG, BAR, Hide
 // button, close button, and title in the correct place.
 SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow &window, std::string window_title)
     : pos(DEFAULT_GUI_POSITION), dragging(false), resizing(false),
-      WIN_TEXT(TEXT_FONT, "sfml-gui", CHARACTER_SIZE) {
+      WIN_TEXT(res.text_font, "sfml-gui", CHARACTER_SIZE) {
+
+  if(!res.load())
+      throw std::runtime_error("SFGUI assets loading error");
 
   // This is a cluster fuck of ui programming but it works
 
   SF_WINDOW = &window;
   WIN_TITLE = window_title;
-
-  // Load a font once globally
-  if (!SFGUI::TEXT_FONT.openFromFile("sfml-gui-assets/Poppins-Medium.ttf")) {
-    std::cout << "Default Font failed to load :(" << std::endl;
-  }
 
   BG.setFillColor(GUI_BACKGROUND_COLOR);
   BG.setSize(sf::Vector2f(DEFAULT_GUI_SIZE_X, DEFAULT_GUI_SIZE_Y));
@@ -38,12 +34,8 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow &window, std::string window_title)
 
   WIN_TEXT.setFillColor(GUI_TEXT_COLOR);
 
-  if (!CLOSE_TEXTURE.loadFromFile("sfml-gui-assets/close_tex.png"))
-    std::cout << "Failed to load CLOSE_TEXTURE" << std::endl;
-  if (!HIDE_TEXTURE.loadFromFile("sfml-gui-assets/hide_tex.png"))
-    std::cout << "Failed to load HIDE_TEXTURE" << std::endl;
 
-  HIDE_BUTTON.setTexture(&HIDE_TEXTURE);
+  HIDE_BUTTON.setTexture(&res.hide_texture);
   HIDE_BUTTON.setSize(
       sf::Vector2f(DEFAULT_BAR_HEIGHT / 2, DEFAULT_BAR_HEIGHT / 2));
   HIDE_BUTTON.setOrigin(sf::Vector2f(HIDE_BUTTON.getSize().x / 2.f,
@@ -59,7 +51,7 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow &window, std::string window_title)
       sf::Vector2f(DEFAULT_BAR_HEIGHT / 2, DEFAULT_BAR_HEIGHT / 2));
   CLOSE_BUTTON.setOrigin(sf::Vector2f(CLOSE_BUTTON.getSize().x / 2.f,
                                       CLOSE_BUTTON.getSize().y / 2.f));
-  CLOSE_BUTTON.setTexture(&CLOSE_TEXTURE);
+  CLOSE_BUTTON.setTexture(&res.close_texture);
   CLOSE_BUTTON_BG.setSize(sf::Vector2f(DEFAULT_BAR_HEIGHT, DEFAULT_BAR_HEIGHT));
   CLOSE_BUTTON_BG.setPosition(sf::Vector2f(
       BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x,
@@ -73,10 +65,8 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow &window, std::string window_title)
     HIDE_BUTTON.setRotation(sf::degrees(180));
 
   // Resize area
-  if (!RESIZE_TEXTURE.loadFromFile("sfml-gui-assets/resize_tex.png"))
-    std::cout << "Failed to load RESIZE_TEXTURE" << std::endl;
   RESIZE_RECT.setSize(sf::Vector2f(RESIZE_RECT_SIZE, RESIZE_RECT_SIZE));
-  RESIZE_RECT.setTexture(&RESIZE_TEXTURE);
+  RESIZE_RECT.setTexture(&res.hide_texture);
   RESIZE_RECT.setPosition(
       sf::Vector2f(BG.getPosition().x + BG.getSize().x - RESIZE_RECT_SIZE,
                    BG.getPosition().y + BG.getSize().y - RESIZE_RECT_SIZE));

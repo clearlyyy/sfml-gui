@@ -16,7 +16,7 @@ class Slider3 : public SFWIDGET
     public:
 
         // Constructor where all 3 sliders have same min/max values with default width.
-        Slider3 (T *val1, T *val2, T *val3, const std::string& text, T min, T max) : SFWIDGET("Slider3"), label(TEXT_FONT),
+        Slider3 (T *val1, T *val2, T *val3, const std::string& text, T min, T max) : SFWIDGET("Slider3"), label(res.text_font),
             slider(val1, text, min, max, DEFAULT_BUTTON_SIZE.x),
             slider2(val2, text, min, max, DEFAULT_BUTTON_SIZE.x),
             slider3(val3, text, min, max, DEFAULT_BUTTON_SIZE.x)
@@ -25,7 +25,7 @@ class Slider3 : public SFWIDGET
             this->SetupSlider();
         }
         // Constructor where all 3 sliders have same min/max values with defined width.
-        Slider3 (T *val1, T *val2, T *val3, const std::string& text, T min, T max, float slider_width) : SFWIDGET("Slider3"), label(TEXT_FONT),
+        Slider3 (T *val1, T *val2, T *val3, const std::string& text, T min, T max, float slider_width) : SFWIDGET("Slider3"), label(res.text_font),
             slider(val1, text, min, max, slider_width),
             slider2(val2, text, min, max, slider_width),
             slider3(val3, text, min, max, slider_width)
@@ -35,7 +35,7 @@ class Slider3 : public SFWIDGET
         }
 
         // Constructor where all 3 sliders have different min/max values with default width.
-        Slider3 (T *val1, T *val2, T *val3, const std::string& text, T min_val1, T max_val1, T min_val2, T max_val2, T min_val3, T max_val3) : SFWIDGET("Slider3"), label(TEXT_FONT),
+        Slider3 (T *val1, T *val2, T *val3, const std::string& text, T min_val1, T max_val1, T min_val2, T max_val2, T min_val3, T max_val3) : SFWIDGET("Slider3"), label(res.text_font),
             slider(val1, text, min_val1, max_val1, DEFAULT_BUTTON_SIZE.x),
             slider2(val2, text, min_val2, max_val2, DEFAULT_BUTTON_SIZE.x),
             slider3(val3, text, min_val3, max_val3, DEFAULT_BUTTON_SIZE.x)
@@ -45,7 +45,7 @@ class Slider3 : public SFWIDGET
         }
 
         // Constructor where all 3 sliders have different min/max values with defined width.
-        Slider3 (T *val1, T *val2, T *val3, const std::string& text, T min_val1, T max_val1, T min_val2, T max_val2, T min_val3, T max_val3, float slider_width) : SFWIDGET("Slider3"), label(TEXT_FONT),
+        Slider3 (T *val1, T *val2, T *val3, const std::string& text, T min_val1, T max_val1, T min_val2, T max_val2, T min_val3, T max_val3, float slider_width) : SFWIDGET("Slider3"), label(res.text_font),
             slider(val1, text, min_val1, max_val1, slider_width),
             slider2(val2, text, min_val2, max_val2, slider_width),
             slider3(val3, text, min_val3, max_val3, slider_width)

@@ -18,9 +18,13 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode({1920, 1080}), "SFML works!");
 
-    sf::Font ft;
-    ft.openFromFile("Poppins-Medium.ttf");
-    sf::Text fpsText(ft, "", 24);
+    // you should load resources by yourself if you
+    // dont create SFGUI::SFMLGU in a first place
+    if(!SFGUI::res.load()) {
+        std::cerr << "SFGUI assets loading error";
+        return 1;
+    }
+    sf::Text fpsText(SFGUI::res.text_font, "", 24);
     fpsText.setPosition(sf::Vector2f(30, 30));
     sf::Clock clock;
     float fps = 0.f; 

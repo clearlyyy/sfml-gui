@@ -9,14 +9,14 @@
 namespace SFGUI {
 class Listbox : public SFWIDGET {
     public:
-        Listbox(std::string label, int* current_item, std::string items[], size_t count) :  SFWIDGET("Listbox"), label_text(TEXT_FONT, label, CHARACTER_SIZE),
-            currently_chosen_text(TEXT_FONT, "testing", CHARACTER_SIZE)         
+        Listbox(std::string label, int* current_item, std::string items[], size_t count) :  SFWIDGET("Listbox"), label_text(res.text_font, label, CHARACTER_SIZE),
+            currently_chosen_text(res.text_font, "testing", CHARACTER_SIZE)         
         {
             selected_item = current_item;
 
             for (int i = 0; i < count; i++) {
                 list_items.push_back(items[i]);
-                sf::Text text(TEXT_FONT, items[i], CHARACTER_SIZE);
+                sf::Text text(res.text_font, items[i], CHARACTER_SIZE);
                 sf::RectangleShape bg_text;
                 text_list.push_back(text);
                 text_list_bg.push_back(bg_text);
@@ -39,9 +39,7 @@ class Listbox : public SFWIDGET {
                 rect.setFillColor(GUI_BACKGROUND_COLOR);
             }
 
-            if (!show_texture.loadFromFile("sfml-gui-assets/hide_tex.png")) 
-                std::cout << "Failed to load SHOW_TEXTURE" << std::endl;
-            show_button.setTexture(&show_texture);
+            show_button.setTexture(&res.hide_texture);
             show_button.setSize(sf::Vector2f(DEFAULT_LIST_SIZE.y/2.f, DEFAULT_LIST_SIZE.y/2.f));
             show_button.setOrigin(sf::Vector2f(show_button.getSize().x/2.f, show_button.getSize().y/2.f));
 
